@@ -32,6 +32,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # Personal Files
 #-------------------------
+readme.rst
 .htaccess
 phpstorm.php
 user_guide/*
+
