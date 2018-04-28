@@ -9,6 +9,7 @@ Se utilizarán los siguientes elementos:
 2. [Bootstrap versión 4.1.0](https://getbootstrap.com/)
 3. [ModularAdmin Dashboard version 1.3.0](https://github.com/modularcode/modular-admin-html)
 4. [Toastr - Simple javascript toast notifications version 2.1.1](http://codeseven.github.io/toastr/)
+5. [Fontawesome version 4.7.0](http://http://fontawesome.io/)
 
 # Versión en desarrollo
 
