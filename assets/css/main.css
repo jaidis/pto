@@ -1,22 +1,180 @@
-/*
-Removes white gap between slides
-*/
+/******************************************************************************
+*
+*  Import Fonts
+*
+******************************************************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400');
+
+body{
+    font-family: 'Titillium Web', sans-serif;
+}
+/******************************************************************************
+*
+*  Config Custom Carrousel. Steps:
+*  - Removes white gap between slides
+*  - Forces image to be 100% width and not max width of 100%
+*  - Anchors are inline so you need ot make them block to go full width
+*
+******************************************************************************/
+
+
 .carousel {
-    background:#444;
+    background: #555 !important;
 }
 
-/*
-Forces image to be 100% width and not max width of 100%
-*/
 .carousel-item .img-fluid {
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
 }
 
-/*
-anchors are inline so you need ot make them block to go full width
-*/
 .carousel-item a {
     display: block;
-    width:100%;
+    width: 100%;
+}
+
+/******************************************************************************
+*
+*  Config Background For The Website
+*
+******************************************************************************/
+
+.bg-main {
+    background-color: #efffff;
+}
+/******************************************************************************
+*
+*  Config Main Jumbotron
+*
+******************************************************************************/
+
+.h1-jumbo{
+    margin-top: 11rem;
+    margin-bottom: 4rem;
+}
+
+
+.bg-jumbotron-main {
+    /*    padding-top: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;*/
+    background-image: url(/assets/img/jumbo-main.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    /*background-color: rgba(0, 0, 0, 0.9) !important;*/
+    width: 100%;
+    height: 100%;
+}
+
+.img-news {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    margin-bottom: 1rem !important;
+}
+
+@media (min-width: 768px) {
+    .img-news {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        display: flex !important;
+        margin-bottom: 0 !important;
+    }
+
+    .img-div {
+        float: left !important;
+        margin-right: 1rem !important;
+    }
+}
+/******************************************************************************
+*
+*  Create effects at the Navbar
+*
+******************************************************************************/
+
+.navbar-effect a::before,
+.navbar-effect a::after {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+    transition: transform 0.3s, opacity 0.2s;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.navbar-effect a::before {
+    margin-right: 10px;
+    content: '[';
+    -webkit-transform: translateX(20px);
+    -moz-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+.navbar-effect a::after {
+    margin-left: 10px;
+    content: ']';
+    -webkit-transform: translateX(-20px);
+    -moz-transform: translateX(-20px);
+    transform: translateX(-20px);
+}
+
+.navbar-effect a:hover::before,
+.navbar-effect a:hover::after,
+.navbar-effect a:focus::before,
+.navbar-effect a:focus::after {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+/******************************************************************************
+*
+*  Footer
+*
+******************************************************************************/
+
+.footer {
+    padding-top: 2rem;
+}
+
+.footer-col {
+    text-align: center;
+    text-transform: uppercase;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 2rem;
+}
+
+.icon-left {
+    display: none;
+}
+
+
+/******************************************************************************
+*
+*  Footer Media Query < 768px
+*
+******************************************************************************/
+
+@media (min-width: 768px) {
+    .icon-left {
+        display: inline-block;
+    }
+    .footer-left {
+        text-align: left;
+    }
+    .footer-center {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+    .row-special {
+        flex-wrap: nowrap;
+    }
+    .footer-right {
+        text-align: right;
+    }
+
 }
