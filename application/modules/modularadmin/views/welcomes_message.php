@@ -72,6 +72,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<p>Esta es la vista de Welcomes</p>
+        <p><?php
+            foreach ($news as $new)
+            {
+                echo '<pre>';
+                print_r($new);
+                echo '</pre>';
+            }
+            ?></p>
 
 	</div>
 

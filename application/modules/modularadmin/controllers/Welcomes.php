@@ -18,9 +18,18 @@ class Welcomes extends MX_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+
+	public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('WelcomesModel','we');
+    }
+
+    public function index()
 	{
-		$this->load->view('welcomes_message');
+	    $data = array();
+	    $data['news'] = $this->we->getNewsPortal();
+		$this->load->view('welcomes_message',$data);
 		//echo "prueba de la vista de bienvenida";
 	}
 }
