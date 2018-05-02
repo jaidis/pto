@@ -11,28 +11,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <footer class="footer bg-primary text-white">
     <div class="row text-center mx-0">
         <div class="col-12 col-md-4 footer-col footer-left">
-            <p class="p-0 m-0"><a href="index.html" class="text-white"><i class="fa fa-home fa-fw mr-1 icon-left"></i>Inicio</a></p>
-            <p class="p-0 m-0"><a href="carta.html" class="text-white"><i class="fa fa-cutlery fa-fw mr-1 icon-left"></i>Carta</a></p>
-            <p class="p-0 m-0"><a href="reserva.html" class="text-white"><i class="fa fa-calendar-plus-o fa-fw mr-1 icon-left"></i>Reserva</a></p>
-            <p class="p-0 m-0"><a href="contacto.html" class="text-white"><i class="fa fa-info fa-fw mr-1 icon-left"></i>Contacto</a></p>
-<!--            <p class="p-0 m-0"><a href="comentarios.html" class="text-white"><i class="fa fa-star fa-fw mr-1 icon-left"></i>Reseñas</a></p>-->
-<!--            <p class="p-0 m-0"><a href="galeria.html" class="text-white"><i class="fa fa-picture-o fa-fw mr-1 icon-left"></i>Galeria</a></p>-->
+            <p class="p-0 m-0"><a href="/" class="text-white"><i class="fa fa-home fa-fw mr-1 icon-left"></i>Inicio</a></p>
+            <p class="p-0 m-0"><a href="/provincias" class="text-white"><i class="fa fa-globe fa-fw mr-1 icon-left"></i>Provincias</a></p>
+            <p class="p-0 m-0"><a href="/noticias" class="text-white"><i class="fa fa-newspaper-o fa-fw mr-1 icon-left"></i>Noticias</a></p>
+            <p class="p-0 m-0"><a href="/contacto" class="text-white"><i class="fa fa-info fa-fw mr-1 icon-left"></i>Contacto</a></p>
         </div>
         <div class="col-12 col-md-4 footer-col footer-center">
             <div class="row justify-content-center row-special">
-                <a href="index.html" class="text-white"><i class="fa fa-facebook-official fa-3x px-2"></i></a>
-                <a href="index.html" class="text-white"><i class="fa fa-twitter-square fa-3x px-2"></i></a>
-                <a href="index.html" class="text-white"><i class="fa fa-whatsapp fa-3x px-2"></i></a>
-                <a href="index.html" class="text-white"><i class="fa fa-instagram fa-3x px-2"></i></a>
+                <a href="/" class="text-white"><i class="fa fa-facebook-official fa-3x px-2"></i></a>
+                <a href="/" class="text-white"><i class="fa fa-twitter-square fa-3x px-2"></i></a>
+                <a href="/" class="text-white"><i class="fa fa-whatsapp fa-3x px-2"></i></a>
+                <a href="/" class="text-white"><i class="fa fa-instagram fa-3x px-2"></i></a>
             </div>
         </div>
         <div class="col-12 col-md-4 footer-col footer-right">
-            <p class="p-0 m-0">Calle Lanjarón, 8</p>
-            <p class="p-0 m-0">Albolote</p>
-            <p class="p-0 m-0">CP:18220</p>
-            <p class="p-0 m-0"><strong>E-mail</strong> <em>info@lacasona.es</em></p>
-<!--            <p class="p-0 m-0"><strong>Teléfono</strong> <em>958 49 00 00</em></p>-->
-<!--            <p class="p-0 m-0"><strong>Horario</strong> <em>L-V 07:00-20:00</em></p>-->
+            <p class="p-0 m-0"><a href="/cuenta" class="text-white">Cuenta<i class="fa fa-user fa-fw ml-1 icon-left"></i></a></p>
+            <p class="p-0 m-0"><a href="/login" class="text-white">Login<i class="fa fa-key fa-fw ml-1 icon-left"></i></a></p>
+            <p class="p-0 m-0"><a href="/registro" class="text-white">Regitro<i class="fa fa-user-plus fa-fw ml-1 icon-left"></i></a></p>
+            <p class="p-0 m-0"><a href="/recuperar-cuenta" class="text-white">Recuperar cuenta<i class="fa fa-refresh fa-fw ml-1 icon-left"></i></a></p>
         </div>
     </div>
 </footer>

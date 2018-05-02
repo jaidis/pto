@@ -32,21 +32,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div class="collapse navbar-collapse" id="navbarPortal">
         <ul class="navbar-nav mr-auto navbar-effect">
-            <li class="nav-item active">
+            <li class="nav-item <?php echo ($activo == "provincias") ? "active" : "" ?>">
                 <a class="nav-link" href="/provincias">Provincias</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo ($activo == "noticias") ? "active" : "" ?>">
                 <a class="nav-link" href="/noticias">Noticias</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo ($activo == "contacto") ? "active" : "" ?>">
                 <a class="nav-link" href="/contacto">Contacto</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto navbar-effect">
-            <li class="nav-item">
+            <li class="nav-item <?php echo ($activo == "login") ? "active" : "" ?>">
                 <a class="nav-link" href="/login">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?php echo ($activo == "registro") ? "active" : "" ?>">
                 <a class="nav-link" href="/registro">Registro</a>
             </li>
         </ul>

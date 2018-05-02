@@ -15,7 +15,7 @@ class Portal extends CI_Controller
         $data = array();
         $data['news'] = $this->portal->getNewsPortal();
         $data['carousel'] = $this->portal->getCarousel();
-//        print_r($data['carousel']);
+        $data['activo'] = "";
         $this->load->view('header.php', $data);
         $this->load->view('index.php', $data);
         $this->load->view('footer.php', $data);
