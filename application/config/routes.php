@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['welcomes'] = 'modularadmin/welcomes/index';
 $route['template'] = 'welcome/template';
+
+$route['provincias'] = 'portal/provinces';

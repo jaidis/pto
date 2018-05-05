@@ -178,3 +178,9 @@ body{
     }
 
 }
+
+#mapa
+{
+    min-width: 98%;
+    height: 72vh;
+}

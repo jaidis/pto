@@ -7,49 +7,12 @@
  */
 ?>
 <div class="container-fluid p-0">
-    <div class="row d-none d-md-block mx-0">
-        <div class="col-12 p-0">
-            <div id="carouselPortal" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
-                <div class="carousel-inner " role="listbox">
-                    <?php
-                    foreach ($carousel as $key=>$variable):
-                    ?>
-                    <div class="carousel-item <?php echo ($key == 0)? 'active': ''?>">
-                        <img src="/assets/img/carousel/<?php echo ($variable->image_url != null) ? $variable->image_url : 'not-found-1920-450.jpg'; ?>" alt="responsive image" class="d-block img-fluid">
-                        <!-- <div class="carousel-caption justify-content-center align-items-center"> -->
-                        <div class="carousel-caption ">
-                            <div>
-                                <h1 class="fadeInDown animated custom-font"><?php echo $variable->title;?></h1>
-                                <p class="lead fadeInUp animated"><?php echo $variable->subtitle;?></p>
-                                <a href="<?php echo $variable->url;?>">
-                                    <span class="btn btn-primary slideInUp animated"">Saber más</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                    endforeach;
-                    ?>
-                </div>
-                <!-- /.carousel-inner -->
-                <a class="carousel-control-prev" href="#carouselPortal" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselPortal" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-            <!-- /.carousel -->
-        </div>
-    </div>
     <div class="row bg-main m-0 p-0">
         <div class="col-12 offset-md-1 col-md-10 py-3">
             <div class="jumbotron bg-jumbotron-main">
 <!--<h1 class="display-3 text-white text-center h1-jumbo animated">Portal Turismo y Ocio</h1>-->
                 <div class="offset-1 col-10 offset-md-3 col-md-6">
-                    <img src="/assets/img/pto.png" class="img-fluid h1-jumbo animated">
+                    <img src="/assets/img/pto.png" class="img-fluid h1-jumbo animated" style="opacity:0;">
                 </div>
                 <p class="lead text-white animated" id="p-jumbo">Bienvenido/a al Portal Turismo y Ocio, aquí encontrarás
                     toda la información sobre los monumentos y la gastronomía típica de las provincias de españolas.
@@ -87,6 +50,43 @@
         </div>
         <div class="col-12 offset-lg-4 col-lg-4 my-5">
             <a href="/noticias"><button class="btn btn-primary btn-lg btn-block">Ver más noticias</button></a>
+        </div>
+    </div>
+    <div class="row d-none d-md-block mx-0">
+        <div class="col-12 p-0">
+            <div id="carouselPortal" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
+                <div class="carousel-inner " role="listbox">
+                    <?php
+                    foreach ($carousel as $key=>$variable):
+                        ?>
+                        <div class="carousel-item <?php echo ($key == 0)? 'active': ''?>">
+                            <img src="/assets/img/carousel/<?php echo ($variable->image_url != null) ? $variable->image_url : 'not-found-1920-450.jpg'; ?>" alt="responsive image" class="d-block img-fluid">
+                            <!-- <div class="carousel-caption justify-content-center align-items-center"> -->
+                            <div class="carousel-caption ">
+                                <div>
+                                    <h1 class="fadeInDown animated custom-font"><?php echo $variable->title;?></h1>
+                                    <p class="lead fadeInUp animated"><?php echo $variable->subtitle;?></p>
+                                    <a href="<?php echo $variable->url;?>">
+                                        <span class="btn btn-primary slideInUp animated"">Saber más</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+                <!-- /.carousel-inner -->
+                <a class="carousel-control-prev" href="#carouselPortal" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselPortal" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <!-- /.carousel -->
         </div>
     </div>
 </div>

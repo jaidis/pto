@@ -10,6 +10,9 @@ class Portal extends CI_Controller
         $this->load->model('PortalModel','portal');
     }
 
+    /**
+     * Init the main view at the website
+     */
     public function index()
     {
         $data = array();
@@ -19,7 +22,17 @@ class Portal extends CI_Controller
         $this->load->view('header.php', $data);
         $this->load->view('index.php', $data);
         $this->load->view('footer.php', $data);
+    }
 
+    /**
+     * Call the view for render the map at Spain
+     */
+    public function provinces(){
+        $data = array();
+        $data['activo'] = "provincias";
+        $this->load->view('header.php', $data);
+        $this->load->view('provinces.php', $data);
+        $this->load->view('footer.php', $data);
     }
 
 }

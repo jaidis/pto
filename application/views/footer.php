@@ -13,6 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-12 col-md-4 footer-col footer-left">
             <p class="p-0 m-0"><a href="/" class="text-white"><i class="fa fa-home fa-fw mr-1 icon-left"></i>Inicio</a></p>
             <p class="p-0 m-0"><a href="/provincias" class="text-white"><i class="fa fa-globe fa-fw mr-1 icon-left"></i>Provincias</a></p>
+            <p class="p-0 m-0"><a href="/monumentos" class="text-white"><i class="fa fa-map-signs fa-fw mr-1 icon-left"></i>Monumentos</a></p>
+            <p class="p-0 m-0"><a href="/contacto" class="text-white"><i class="fa fa-cutlery fa-fw mr-1 icon-left"></i>Gastronomía</a></p>
             <p class="p-0 m-0"><a href="/noticias" class="text-white"><i class="fa fa-newspaper-o fa-fw mr-1 icon-left"></i>Noticias</a></p>
             <p class="p-0 m-0"><a href="/contacto" class="text-white"><i class="fa fa-info fa-fw mr-1 icon-left"></i>Contacto</a></p>
         </div>
@@ -37,6 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="/assets/js/popper-1.14.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/assets/js/bootstrap-4-1.0.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/assets/js/jquery.waypoints-4.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/assets/js/jquery-jvectormap-2.0.3.min.js" charset="utf-8"></script>
+<script src="/assets/js/jquery-jvectormap-es-merc.min.js" charset="utf-8"></script>
 <script src="/assets/js/main.js" type="text/javascript" charset="utf-8"></script>
 <?php
 if (!empty($js_to_load))
