@@ -3,12 +3,13 @@
 *  Import Fonts
 *
 ******************************************************************************/
-
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:400');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 
-body{
+body {
     font-family: 'Titillium Web', sans-serif;
 }
+
 /******************************************************************************
 *
 *  Config Custom Carrousel. Steps:
@@ -18,10 +19,9 @@ body{
 *
 ******************************************************************************/
 
-
-.carousel {
+/*.carousel {
     background: #555 !important;
-}
+}*/
 
 .carousel-item .img-fluid {
     width: 100%;
@@ -42,29 +42,24 @@ body{
 .bg-main {
     background-color: #efffff;
 }
+
 /******************************************************************************
 *
 *  Config Main Jumbotron
 *
 ******************************************************************************/
 
-.h1-jumbo{
+.h1-jumbo {
     margin-top: 11rem;
     margin-bottom: 4rem;
 }
 
-
 .bg-jumbotron-main {
-    /*    padding-top: 2rem;
-        margin-top: 2rem;
-        margin-bottom: 2rem;*/
-    background-image: url(/assets/img/jumbo-main.jpg);
-    background-repeat: no-repeat;
+
+    background: url(/assets/img/jumbo-main.jpg);
+    background-attachment: fixed;
     background-position: center center;
     background-size: cover;
-    /*background-color: rgba(0, 0, 0, 0.9) !important;*/
-    width: 100%;
-    height: 100%;
 }
 
 .img-news {
@@ -87,6 +82,7 @@ body{
         margin-right: 1rem !important;
     }
 }
+
 /******************************************************************************
 *
 *  Create effects at the Navbar
@@ -97,9 +93,9 @@ body{
 .navbar-effect a::after {
     display: inline-block;
     opacity: 0;
-    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
-    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
-    transition: transform 0.3s, opacity 0.2s;
+    /*-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;*/
+    /*-moz-transition: -moz-transform 0.3s, opacity 0.2s;*/
+    /*transition: transform 0.3s, opacity 0.2s;*/
     margin-right: 0px;
     margin-left: 0px;
 }
@@ -132,6 +128,47 @@ body{
 
 /******************************************************************************
 *
+*  Change property for some titles
+*
+******************************************************************************/
+
+.special-title {
+    font-family: "Great Vibes", cursive;
+    text-shadow: 0.15rem 0.15rem 0.15rem #fff;
+}
+
+.special-title:hover {
+    color: white !important;
+    text-shadow: 0.15rem 0.15rem 0.15rem #2c3e50;
+    cursor: pointer;
+}
+
+.center-titles {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: center;
+    color: #2c3e50;
+}
+
+@media (min-width: 768px) {
+    .center-titles {
+        font-size: 4.5rem;
+    }
+}
+
+/******************************************************************************
+*
+*  Width and height for Vector Map
+*
+******************************************************************************/
+#mapa {
+    min-width: 98%;
+    height: 72vh;
+}
+
+/******************************************************************************
+*
 *  Footer
 *
 ******************************************************************************/
@@ -152,7 +189,6 @@ body{
     display: none;
 }
 
-
 /******************************************************************************
 *
 *  Footer Media Query < 768px
@@ -163,24 +199,22 @@ body{
     .icon-left {
         display: inline-block;
     }
+
     .footer-left {
         text-align: left;
     }
+
     .footer-center {
         text-align: center;
         margin-top: 1.5rem;
     }
+
     .row-special {
         flex-wrap: nowrap;
     }
+
     .footer-right {
         text-align: right;
     }
 
-}
-
-#mapa
-{
-    min-width: 98%;
-    height: 72vh;
 }

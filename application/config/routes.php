@@ -57,3 +57,5 @@ $route['welcomes'] = 'modularadmin/welcomes/index';
 $route['template'] = 'welcome/template';
 
 $route['provincias'] = 'portal/provinces';
+$route['provincia'] = 'portal/province';
+$route['provincia/(:any)'] = 'portal/province/$1';

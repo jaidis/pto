@@ -8,8 +8,8 @@
 ?>
 <div class="container-fluid p-0">
     <div class="row bg-main m-0 p-0">
-        <div class="col-12 offset-md-1 col-md-10 py-3">
-            <div class="jumbotron bg-jumbotron-main">
+        <div class="col-12 offset-xl-2 col-xl-8 pt-3">
+            <div class="jumbotron bg-jumbotron-main m-0">
 <!--<h1 class="display-3 text-white text-center h1-jumbo animated">Portal Turismo y Ocio</h1>-->
                 <div class="offset-1 col-10 offset-md-3 col-md-6">
                     <img src="/assets/img/pto.png" class="img-fluid h1-jumbo animated" style="opacity:0;">
@@ -23,10 +23,10 @@
                 </p>
             </div>
         </div>
-        <div class="col-12 my-5">
-            <h1 class="display-3 text-center text-primary">Últimas Noticias</h1>
+        <div class="col-12 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8 my-5">
+            <h1 class="center-titles special-title">Últimas Noticias</h1>
         </div>
-        <div class="col-12 offset-md-1 col-md-10">
+        <div class="col-12 offset-xl-2 col-xl-8">
             <div class="list-group">
                 <?php
                 foreach ($news as $new):
@@ -37,9 +37,9 @@
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
-                            <h3 class=" text-primary"><?php echo $new->title;?></h3>
+                            <h3 class="text-primary text-title"><?php echo $new->title;?></h3>
                         </div>
-                        <p class="mb-1 lead text-primary text-justify"><?php echo $new->subtitle;?></p>
+                        <p class="mb-1 lead text-primary"><?php echo $new->subtitle;?></p>
                         <p class="text-muted mt-2 text-right"><?php echo $new->date_creation;?></p>
                     </div>
                 </a>
@@ -48,7 +48,7 @@
                 ?>
             </div>
         </div>
-        <div class="col-12 offset-lg-4 col-lg-4 my-5">
+        <div class="col-12 offset-lg-4 col-lg-4 offset-xl-5 col-xl-2 my-5">
             <a href="/noticias"><button class="btn btn-primary btn-lg btn-block">Ver más noticias</button></a>
         </div>
     </div>
@@ -78,11 +78,11 @@
                 </div>
                 <!-- /.carousel-inner -->
                 <a class="carousel-control-prev" href="#carouselPortal" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <i class="fa fa-4x fa-caret-left text-white pt-4" aria-hidden="true"></i>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselPortal" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <i class="fa fa-4x fa-caret-right text-white pt-4" aria-hidden="true"></i>
                     <span class="sr-only">Next</span>
                 </a>
             </div>

@@ -21,8 +21,17 @@ class PortalModel extends CI_Model
         return $this->db->get('news', 5)->result();
     }
 
+    public function getNewsPortalProvince($id_province){
+        $this->db->order_by('date_creation','desc');
+        return $this->db->get_where('news', array('id_province'=>$id_province), 5)->result();
+    }
+
     public function getCarousel(){
         $this->db->order_by('position','asc');
         return $this->db->get_where('carousel', array('active'=>1))->result();
+    }
+
+    public function getProvince($map_code){
+        return $this->db->get_where('provinces', array('map_code'=> $map_code, 'active'=>1))->result();
     }
 }

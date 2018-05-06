@@ -20,6 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="/assets/css/animate-3.6.0.min.css">
     <link rel="stylesheet" href="/assets/css/jquery-jvectormap-2.0.3.css">
     <link rel="stylesheet" href="/assets/css/main.css">
+    <?php
+    if (!empty($css_to_load))
+        echo "<link rel=\"stylesheet\" href=\"/assets/css/$css_to_load\">";
+    ?>
     <link href="/assets/img/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
 <body>
