@@ -191,6 +191,87 @@ body {
 
 /******************************************************************************
 *
+*  Configuration for Gridder.js
+*
+******************************************************************************/
+
+.gridder {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    font-size: 0;
+}
+
+.gridder-list, .gridder-show {
+    font-size: 16px;
+}
+
+.gridder-list {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.gridder-show {
+    display: block;
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.gridder-content {
+    display: none;
+}
+
+.gridder-list:nth-child(n) {
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
+.gridder-list:nth-of-type(2n) {
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.gridder-navigation {
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    text-align: center
+}
+
+.gridder-navigation a {
+    background: #2c3e50;
+    display: inline-block;
+    padding: 15px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 24px;
+    margin-right: 0px;
+    transition: all .3s ease-in-out
+}
+
+.gridder-navigation a:hover {
+    background: #FFFFFF;
+    color: #2c3e50;
+}
+
+.gridder-navigation a.disabled {
+    opacity: 0
+}
+
+.gridder-expanded-content {
+    animation-name: fadeIn;
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    background-color: #fff;
+    border: #2c3e50 0.1rem solid;
+    margin-bottom: 1%;
+}
+
+/******************************************************************************
+*
 *  Footer Media Query < 768px
 *
 ******************************************************************************/
