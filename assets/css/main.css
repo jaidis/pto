@@ -85,6 +85,29 @@ body {
 
 /******************************************************************************
 *
+*  Config Description Province Jumbotron
+*
+******************************************************************************/
+
+.jumbotron-description{
+    border: #2c3e50 0.075rem solid;
+    background-color: #FFF;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    margin: 0 !important;
+}
+
+.href-card{
+    color: #2c3e50;
+}
+.href-card:hover{
+    background-color: #ecf0f1;
+    text-decoration: none;
+}
+
+
+/******************************************************************************
+*
 *  Create effects at the Navbar
 *
 ******************************************************************************/
@@ -93,9 +116,9 @@ body {
 .navbar-effect a::after {
     display: inline-block;
     opacity: 0;
-    /*-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;*/
-    /*-moz-transition: -moz-transform 0.3s, opacity 0.2s;*/
-    /*transition: transform 0.3s, opacity 0.2s;*/
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+    transition: transform 0.3s, opacity 0.2s;
     margin-right: 0px;
     margin-left: 0px;
 }
@@ -134,13 +157,19 @@ body {
 
 .special-title {
     font-family: "Great Vibes", cursive;
-    text-shadow: 0.15rem 0.15rem 0.15rem #fff;
+    text-shadow: 0.15rem 0.15rem 0.15rem #fff !important;
 }
 
 .special-title:hover {
     color: white !important;
-    text-shadow: 0.15rem 0.15rem 0.15rem #2c3e50;
+    text-shadow: 0.15rem 0.15rem 0.15rem #2c3e50 !important;
     cursor: pointer;
+
+}
+
+
+.href-special-title:hover{
+    text-decoration: none !important;
 }
 
 .center-titles {

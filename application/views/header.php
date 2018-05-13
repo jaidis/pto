@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a class="nav-link" href="/monumentos">Monumentos</a>
             </li>
             <li class="nav-item <?php echo ($activo == "gastronomia") ? "active" : "" ?>">
-                <a class="nav-link" href="/gastronomia">Gastronomía</a>
+                <a class="nav-link" href="/gastronomias">Gastronomía</a>
             </li>
             <li class="nav-item <?php echo ($activo == "noticias") ? "active" : "" ?>">
                 <a class="nav-link" href="/noticias">Noticias</a>

@@ -5,22 +5,26 @@ $(document).ready(function () {
     $('.bg-jumbotron-province').css('background-size', 'cover');
     $('.bg-jumbotron-province').css('border-radius', '0');
 
+    $("#carouselMonumentos").find(".carousel-item").first().addClass('active');
+
     $("#carouselMonumentos").on("slide.bs.carousel", function(e) {
         var event = $(e.relatedTarget);
+        console.log('monumentos');
+        console.log(event);
         var idx = event.index();
         var itemsPerSlide = 3;
-        var totalItems = $(this).find(".carousel-item").length;
+        var totalItems = $("#carouselMonumentos").find(".carousel-item").length;
 
         if (idx >= totalItems - (itemsPerSlide - 1)) {
             var it = itemsPerSlide - (totalItems - idx);
             for (var i = 0; i < it; i++) {
                 // append slides to end
-                if (e.direction == "left") {
-                    $(this).find(".carousel-item")
+                if ($("#carouselMonumentos").find(e).direction == "left") {
+                    $("#carouselMonumentos").find(".carousel-item")
                         .eq(i)
                         .appendTo(".carousel-inner");
                 } else {
-                    $(this).find(".carousel-item")
+                    $("#carouselMonumentos").find(".carousel-item")
                         .eq(0)
                         .appendTo($(this).find(".carousel-inner"));
                 }
@@ -28,22 +32,24 @@ $(document).ready(function () {
         }
     });
 
+    $("#carouselGastronomia").find(".carousel-item").first().addClass('active');
+
     $("#carouselGastronomia").on("slide.bs.carousel", function(e) {
         var event = $(e.relatedTarget);
         var idx = event.index();
         var itemsPerSlide = 3;
-        var totalItems = $(this).find(".carousel-item").length;
+        var totalItems = $("#carouselGastronomia").find(".carousel-item").length;
 
         if (idx >= totalItems - (itemsPerSlide - 1)) {
             var it = itemsPerSlide - (totalItems - idx);
             for (var i = 0; i < it; i++) {
                 // append slides to end
-                if (e.direction == "left") {
-                    $(this).find(".carousel-item")
+                if ($("#carouselGastronomia").find(e).direction == "left") {
+                    $("#carouselGastronomia").find(".carousel-item")
                         .eq(i)
                         .appendTo(".carousel-inner");
                 } else {
-                    $(this).find(".carousel-item")
+                    $("#carouselGastronomia").find(".carousel-item")
                         .eq(0)
                         .appendTo($(this).find(".carousel-inner"));
                 }
