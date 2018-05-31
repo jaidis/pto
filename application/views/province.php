@@ -17,7 +17,6 @@
         <div class="col-12 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
             <h1 class="center-titles special-title my-5 mx-3">Información sobre <?php echo $province->name ?></h1>
         </div>
-        <!--        revisar columnas en modo movil -->
         <div class="offset-1 col-10 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
             <div class="jumbotron jumbotron-description">
                 <p class="lead text-primary my-0">
@@ -135,37 +134,37 @@
         <div class="col-12 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
             <h1 class="center-titles special-title my-5 mx-3">Galería fotográfica</h1>
         </div>
-        <div class="col-12 offset-xl-2 col-xl-8 text-center">
-            <ul class="gridder">
+        <div class="col-12 offset-xl-2 col-xl-8">
+            <ul class="gridder text-center">
                 <li class="gridder-list" data-griddercontent="#gridder-content-1">
-                    <img src="http://fakeimg.pl/300/200/?text=1" class="img-fluid" style="max-width: 300px">
+                    <img src="https://picsum.photos/300/250" class="img-fluid" style="max-width: 300px">
                 </li><!--
                 -->
                 <li class="gridder-list" data-griddercontent="#gridder-content-2">
-                    <img src="http://fakeimg.pl/300/200/?text=2" class="img-fluid">
+                    <img src="https://picsum.photos/300/250" class="img-fluid">
                 </li><!--
                 -->
                 <li class="gridder-list" data-griddercontent="#gridder-content-3">
-                    <img src="http://fakeimg.pl/300/200/?text=3" class="img-fluid">
+                    <img src="https://picsum.photos/300/250" class="img-fluid">
                 </li><!--
                 -->
                 <li class="gridder-list" data-griddercontent="#gridder-content-4">
-                    <img src="http://fakeimg.pl/300/200/?text=4" class="img-fluid">
+                    <img src="https://picsum.photos/300/250" class="img-fluid">
                 </li><!--
                 -->
                 <li class="gridder-list" data-griddercontent="#gridder-content-5">
-                    <img src="http://fakeimg.pl/300/200/?text=5" class="img-fluid">
+                    <img src="https://picsum.photos/300/250" class="img-fluid">
                 </li><!--
                 -->
                 <li class="gridder-list" data-griddercontent="#gridder-content-6">
-                    <img src="http://fakeimg.pl/300/200/?text=6" class="img-fluid">
+                    <img src="https://picsum.photos/300/250" class="img-fluid">
                 </li><!--
                 -->
             </ul>
             <div id="gridder-content-1" class="gridder-content py-3">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/999/999/?text=1" class="img-fluid"/>
+                        <img src="https://picsum.photos/999/999" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 1</h2>
@@ -182,7 +181,7 @@
             <div id="gridder-content-2" class="gridder-content">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/600/600/?text=2" class="img-fluid"/>
+                        <img src="https://picsum.photos/625/625" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 2</h2>
@@ -199,7 +198,7 @@
             <div id="gridder-content-3" class="gridder-content">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/600/600/?text=3" class="img-fluid"/>
+                        <img src="https://picsum.photos/600/600" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 3</h2>
@@ -216,7 +215,7 @@
             <div id="gridder-content-4" class="gridder-content">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/600/600/?text=4" class="img-fluid"/>
+                        <img src="https://picsum.photos/600/600" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 4</h2>
@@ -233,7 +232,7 @@
             <div id="gridder-content-5" class="gridder-content">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/600/600/?text=5" class="img-fluid"/>
+                        <img src="https://picsum.photos/600/600" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 5</h2>
@@ -250,7 +249,7 @@
             <div id="gridder-content-6" class="gridder-content">
                 <div class="row">
                     <div class="col-xl-7">
-                        <img src="http://fakeimg.pl/600/600/?text=6" class="img-fluid"/>
+                        <img src="https://picsum.photos/650/650" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
                         <h2>Item 6</h2>

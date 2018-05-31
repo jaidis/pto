@@ -11,7 +11,7 @@
         <div class="col-12 offset-xl-2 col-xl-8 pt-3">
             <div class="jumbotron bg-jumbotron-main m-0">
 <!--<h1 class="display-3 text-white text-center h1-jumbo animated">Portal Turismo y Ocio</h1>-->
-                <div class="offset-1 col-10 offset-md-3 col-md-6">
+                <div class="offset-1 col-10 offset-md-2 col-md-8 offset-xl-3 col-xl-6">
                     <img src="/assets/img/pto.png" class="img-fluid h1-jumbo animated" style="opacity:0;">
                 </div>
                 <p class="lead text-white animated" id="p-jumbo">Bienvenido/a al Portal Turismo y Ocio, aquí encontrarás
@@ -33,13 +33,13 @@
                 ?>
                 <a href="<?php echo $new->url;?>" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="img-div">
-                        <img class="img-thumbnail img-news" src="/assets/img/news/<?php echo ($new->image_url != null) ? $new->image_url : 'not-found-1024-768.jpg'; ?>" alt="" width="200">
+                        <img class="img-thumbnail img-news" src="/assets/img/news/<?php echo ($new->image_url != null) ? $new->image_url : 'not-found-1024-768.jpg'; ?>" alt="">
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
                             <h3 class="text-primary text-title"><?php echo $new->title;?></h3>
                         </div>
-                        <p class="mb-1 lead text-primary"><?php echo $new->subtitle;?></p>
+                        <p class="mb-1 lead text-primary d-none d-xl-flex"><?php echo $new->subtitle;?></p>
                         <p class="text-muted mt-2 text-right"><?php echo $new->date_creation;?></p>
                     </div>
                 </a>

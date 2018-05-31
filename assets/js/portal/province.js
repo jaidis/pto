@@ -9,8 +9,8 @@ $(document).ready(function () {
 
     $("#carouselMonumentos").on("slide.bs.carousel", function(e) {
         var event = $(e.relatedTarget);
-        console.log('monumentos');
-        console.log(event);
+        // console.log('monumentos');
+        // console.log(event);
         var idx = event.index();
         var itemsPerSlide = 3;
         var totalItems = $("#carouselMonumentos").find(".carousel-item").length;

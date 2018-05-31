@@ -20,10 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="col-12 col-md-4 footer-col footer-center">
             <div class="row justify-content-center row-special">
-                <a href="/" class="text-white"><i class="fa fa-facebook-official fa-3x px-2"></i></a>
-                <a href="/" class="text-white"><i class="fa fa-twitter-square fa-3x px-2"></i></a>
-                <a href="/" class="text-white"><i class="fa fa-whatsapp fa-3x px-2"></i></a>
-                <a href="/" class="text-white"><i class="fa fa-instagram fa-3x px-2"></i></a>
+                <a href="/" class="facebook px-2"><i class="fa fa-facebook-official fa-3x"></i></a>
+                <a href="/" class="twitter px-2"><i class="fa fa-twitter-square fa-3x"></i></a>
+                <a href="/" class="whatsapp px-2"><i class="fa fa-whatsapp fa-3x"></i></a>
+                <a href="/" class="instagram px-2"><i class="fa fa-instagram fa-3x"></i></a>
             </div>
         </div>
         <div class="col-12 col-md-4 footer-col footer-right">

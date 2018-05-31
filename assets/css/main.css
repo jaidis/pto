@@ -67,6 +67,7 @@ body {
     margin-right: auto !important;
     display: block !important;
     margin-bottom: 1rem !important;
+    width: 300px;
 }
 
 @media (min-width: 768px) {
@@ -83,13 +84,20 @@ body {
     }
 }
 
+@media (min-width: 1367px) {
+    .img-news {
+        width: 450px;
+    }
+
+}
+
 /******************************************************************************
 *
 *  Config Description Province Jumbotron
 *
 ******************************************************************************/
 
-.jumbotron-description{
+.jumbotron-description {
     border: #2c3e50 0.075rem solid;
     background-color: #FFF;
     padding-top: 1rem !important;
@@ -97,14 +105,14 @@ body {
     margin: 0 !important;
 }
 
-.href-card{
+.href-card {
     color: #2c3e50;
 }
-.href-card:hover{
+
+.href-card:hover {
     background-color: #ecf0f1;
     text-decoration: none;
 }
-
 
 /******************************************************************************
 *
@@ -151,6 +159,62 @@ body {
 
 /******************************************************************************
 *
+*  Animation for button at the navbar
+*
+******************************************************************************/
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+.navbar-toggler span {
+    display: block;
+    background-color: #FFF;
+    height: 3px;
+    width: 25px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    left: 0;
+    opacity: 0.9;
+}
+
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+    -webkit-transition: transform .25s ease-in-out;
+    -moz-transition: transform .25s ease-in-out;
+    -o-transition: transform .25s ease-in-out;
+    transition: transform .25s ease-in-out;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg) translateY(-8px) translateX(8px);
+    opacity: 0.9;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+    height: 12px;
+    visibility: hidden;
+    background-color: transparent;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg) translateY(8px) translateX(8px);
+    opacity: 0.9;
+}
+
+/******************************************************************************
+*
 *  Change property for some titles
 *
 ******************************************************************************/
@@ -167,8 +231,7 @@ body {
 
 }
 
-
-.href-special-title:hover{
+.href-special-title:hover {
     text-decoration: none !important;
 }
 
@@ -216,6 +279,95 @@ body {
 
 .icon-left {
     display: none;
+}
+
+.facebook {
+    color: #FFFFFF !important;
+    transition:all 0.5s ease-in-out;
+    -webkit-transition:all 0.5s ease-in-out;
+}
+
+.facebook:hover {
+    color: #3b5998 !important;
+    border-radius: 0.5rem;
+    background-color: #FFFFFF !important;
+    transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    box-shadow: 5px 5px 3px #ccc;
+}
+
+.twitter {
+    color: #FFFFFF !important;
+    transition:all 0.5s ease-in-out;
+    -webkit-transition:all 0.5s ease-in-out;
+}
+
+.twitter:hover {
+    color: #00aced !important;
+    border-radius: 0.5rem;
+    background-color: #FFFFFF !important;
+    transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    box-shadow: 5px 5px 3px #ccc;
+}
+
+.whatsapp {
+    color: #FFFFFF !important;
+    transition:all 0.5s ease-in-out;
+    -webkit-transition:all 0.5s ease-in-out;
+}
+
+.whatsapp:hover {
+    background: #25d366 !important;
+    border-radius: 0.5rem;
+    transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    box-shadow: 5px 5px 3px #ccc;
+}
+
+.instagram {
+    color: #FFFFFF !important;
+    transition:all 0.5s ease-in-out;
+    -webkit-transition:all 0.5s ease-in-out;
+}
+
+.instagram:hover {
+    background: #bc2a8d !important;
+    border-radius: 0.5rem;
+    transform: translate(0, -5px);
+    -webkit-transform: translate(0, -5px);
+    box-shadow: 5px 5px 3px #ccc;
+}
+
+
+/******************************************************************************
+*
+*  Footer Media Query < 768px
+*
+******************************************************************************/
+
+@media (min-width: 768px) {
+    .icon-left {
+        display: inline-block;
+    }
+
+    .footer-left {
+        text-align: left;
+    }
+
+    .footer-center {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .row-special {
+        flex-wrap: nowrap;
+    }
+
+    .footer-right {
+        text-align: right;
+    }
+
 }
 
 /******************************************************************************
@@ -297,34 +449,4 @@ body {
     background-color: #fff;
     border: #2c3e50 0.1rem solid;
     margin-bottom: 1%;
-}
-
-/******************************************************************************
-*
-*  Footer Media Query < 768px
-*
-******************************************************************************/
-
-@media (min-width: 768px) {
-    .icon-left {
-        display: inline-block;
-    }
-
-    .footer-left {
-        text-align: left;
-    }
-
-    .footer-center {
-        text-align: center;
-        margin-top: 1.5rem;
-    }
-
-    .row-special {
-        flex-wrap: nowrap;
-    }
-
-    .footer-right {
-        text-align: right;
-    }
-
 }

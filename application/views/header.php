@@ -28,11 +28,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/"><img src="/assets/img/logo.png" width="50"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPortal"
-            aria-controls="navbarPortal" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-1">
+    <a class="navbar-brand mr-0" href="/"><img class="my-0 py-0" src="/assets/img/logo.png" height="70"></a>
+<!--    <button class="avbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarPortal"-->
+<!--            aria-controls="navbarPortal" aria-expanded="false" aria-label="Toggle navigation">-->
+        <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarPortal">
+        <span> </span>
+        <span> </span>
+        <span> </span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarPortal">
