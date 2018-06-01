@@ -34,6 +34,10 @@ class PortalModel extends CI_Model
         return $this->db->get_where('gastronomies', array('id_province'=>$id_province), 6)->result();
     }
 
+    public function getProvinceImages($id_province){
+        return $this->db->get_where('provinces_images', array('id_province'=> $id_province, 'active'=>1))->result();
+    }
+
     public function getCarousel(){
         $this->db->order_by('position','asc');
         return $this->db->get_where('carousel', array('active'=>1))->result();

@@ -54,6 +54,7 @@ class Portal extends CI_Controller
             $data['news'] = $this->portal->getNewsPortalProvince($data['province']->id);
             $data['monuments'] = $this->portal->getMonumentsProvince($data['province']->id);
             $data['gastronomies'] = $this->portal->getGastronomiesProvince($data['province']->id);
+            $data['galleries'] = $this->portal->getProvinceImages($data['province']->id);
 
             //Generate view for the province template
             $data['activo'] = "provincias";

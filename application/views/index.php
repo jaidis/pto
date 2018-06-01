@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="col-12 offset-lg-4 col-lg-4 offset-xl-5 col-xl-2 my-5">
-            <a href="/noticias"><button class="btn btn-primary btn-lg btn-block">Ver más noticias</button></a>
+            <a href="/noticias" style="text-decoration: none;"><button class="btn btn-primary btn-lg btn-block">Ver más noticias</button></a>
         </div>
     </div>
     <div class="row d-none d-md-block mx-0">
