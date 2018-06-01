@@ -22,9 +22,9 @@ class Portal extends CI_Controller
         $data['news'] = $this->portal->getNewsPortal();
         $data['carousel'] = $this->portal->getCarousel();
         $data['activo'] = "";
-        $this->load->view('header.php', $data);
-        $this->load->view('index.php', $data);
-        $this->load->view('footer.php', $data);
+        $this->load->view('header', $data);
+        $this->load->view('portal/index', $data);
+        $this->load->view('footer', $data);
     }
 
     /**
@@ -35,9 +35,9 @@ class Portal extends CI_Controller
         $data = array();
         $data['activo'] = "provincias";
         $data['js_to_load'] = 'portal/provinces.js';
-        $this->load->view('header.php', $data);
-        $this->load->view('provinces.php', $data);
-        $this->load->view('footer.php', $data);
+        $this->load->view('header', $data);
+        $this->load->view('portal/provinces', $data);
+        $this->load->view('footer', $data);
     }
 
     /**
@@ -61,9 +61,9 @@ class Portal extends CI_Controller
             $data['css_to_load'] = 'portal/province.css';
             $data['js_to_load'] = 'portal/province.js';
 
-            $this->load->view('header.php', $data);
-            $this->load->view('province.php', $data);
-            $this->load->view('footer.php', $data);
+            $this->load->view('header', $data);
+            $this->load->view('portal/province', $data);
+            $this->load->view('footer', $data);
         } else {
             $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
             $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];

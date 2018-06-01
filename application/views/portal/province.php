@@ -158,7 +158,7 @@
                         <img src="/assets/img/province/<?php echo ($gallery->value != null) ? $gallery->value : 'not-found-1024-768.jpg'; ?>" class="img-fluid"/>
                     </div>
                     <div class="col-xl-5 text-left pr-5">
-                        <h2><?php echo $gallery->name; ?></h2>
+                        <h3><?php echo $gallery->name; ?></h3>
                         <p><?php echo $gallery->description; ?></p>
                     </div>
                 </div>

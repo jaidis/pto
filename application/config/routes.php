@@ -56,6 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['welcomes'] = 'modularadmin/welcomes/index';
 $route['template'] = 'welcome/template';
 
+$route['login'] = 'authentication/login';
+$route['registro'] = 'authentication/register';
+$route['recuperar'] = 'authentication/recover';
+$route['password'] = 'authentication/login';
+$route['password/(:any)'] = 'authentication/recoverPassword';
+
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';
 $route['provincia/(:any)'] = 'portal/province/$1';

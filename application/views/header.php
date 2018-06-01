@@ -15,10 +15,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portal Turismo y Ocio</title>
+    <link rel="stylesheet" href="/assets/css/normalize.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/fontawesome-4.7.0.css">
     <link rel="stylesheet" href="/assets/css/animate-3.6.0.min.css">
     <link rel="stylesheet" href="/assets/css/jquery-jvectormap-2.0.3.css">
+    <link rel="stylesheet" href="/assets/css/toastr.css">
     <link rel="stylesheet" href="/assets/css/main.css">
     <?php
     if (!empty($css_to_load))
