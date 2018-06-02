@@ -11,38 +11,61 @@ class Authentication extends CI_Controller
     {
         parent::__construct();
 //        $this->load->model('AuthenticationModel', 'portal');
+        $this->load->helper('url');
     }
 
     public function login()
     {
-        $data = array();
-        $this->load->view('header-clean', $data);
-        $this->load->view('authentication/login', $data);
-        $this->load->view('footer-clean', $data);
+        if ($this->input->post()) {
+            echo "login";
+        }
+        else{
+            $data = array();
+            $this->load->view('header-clean', $data);
+            $this->load->view('authentication/login', $data);
+            $this->load->view('footer-clean', $data);
+        }
+
     }
 
     public function register()
     {
-        $data = array();
-        $this->load->view('header-clean', $data);
-        $this->load->view('authentication/register', $data);
-        $this->load->view('footer-clean', $data);
+        if ($this->input->post()) {
+            echo "register";
+        }
+        else{
+            $data = array();
+            $this->load->view('header-clean', $data);
+            $this->load->view('authentication/register', $data);
+            $this->load->view('footer-clean', $data);
+        }
     }
 
     public function recover()
     {
-        $data = array();
-        $this->load->view('header-clean', $data);
-        $this->load->view('authentication/recover', $data);
-        $this->load->view('footer-clean', $data);
+        if ($this->input->post()) {
+            echo "recover";
+        }
+        else{
+            $data = array();
+            $this->load->view('header-clean', $data);
+            $this->load->view('authentication/recover', $data);
+            $this->load->view('footer-clean', $data);
+        }
     }
 
-    public function recoverPassword()
+    public function recoverPassword($token = null)
     {
-        $data = array();
-        $this->load->view('header-clean', $data);
-        $this->load->view('authentication/recover_password', $data);
-        $this->load->view('footer-clean', $data);
+        if ($this->input->post()) {
+            echo $token;
+        }
+        else{
+            $data = array();
+            $this->load->view('header-clean', $data);
+            $this->load->view('authentication/recover_password', $data);
+            $this->load->view('footer-clean', $data);
+        }
+
     }
 
     public function logout()

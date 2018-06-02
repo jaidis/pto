@@ -9,7 +9,9 @@
 <div class="container p-0">
     <div class="col-login col-11 col-md-6 col-xl-4">
         <div class="card card-login p-4">
-            <h3 class="mt-3 mb-4 text-center">Recuperar cuenta</h3>
+<!--            <h3 class="mt-3 mb-4 text-center">Recuperar cuenta</h3>-->
+            <img id="profile-img" class="profile-img-card-2 mx-auto" src="/assets/img/pto.png" />
+            <hr class="mb-3" />
             <form role="form" id="loginForm" autocomplete="off">
                 <div class="form-row mb-3">
                     <div class="form-group col-md-12">
