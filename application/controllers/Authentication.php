@@ -12,6 +12,7 @@ class Authentication extends CI_Controller
         parent::__construct();
 //        $this->load->model('AuthenticationModel', 'portal');
         $this->load->helper('url');
+        $this->load->library("Aauth");
     }
 
     public function login()
@@ -32,6 +33,7 @@ class Authentication extends CI_Controller
     {
         if ($this->input->post()) {
             echo "register";
+//            $this->aauth->create_user();
         }
         else{
             $data = array();
