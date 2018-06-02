@@ -16,16 +16,16 @@
                     <div class="form-group col-md-12">
                         <label for="inputEmail">Correo electrónico</label>
                         <input type="email" class="form-control" name="inputEmail" id="inputEmail"
-                               placeholder="Introduzca el correo electrónico">
+                               placeholder="Introduzca el correo electrónico" value="admin@example.com">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="inputPassword">Contraseña</label>
                         <input type="password" class="form-control" name="inputPassword" id="inputPassword"
-                               placeholder="Introduzca la contraseña">
+                               placeholder="Introduzca la contraseña" value="admin">
                     </div>
                     <div class="form-group col-md-12 mb-0">
                         <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="remember" required>
+                            <input type="checkbox" class="custom-control-input" id="remember" name="remember">
                             <label class="custom-control-label" for="remember">Recordar</label>
                         </div>
                     </div>

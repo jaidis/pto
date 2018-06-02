@@ -61,6 +61,7 @@ $route['registro'] = 'authentication/register';
 $route['recuperar'] = 'authentication/recover';
 $route['password'] = 'authentication/login';
 $route['password/(:any)'] = 'authentication/recoverPassword';
+$route['logout'] = 'authentication/logout';
 
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';

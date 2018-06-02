@@ -1,4 +1,4 @@
-function toastrTemplate (type, message){
+function lanzarToast (type, message){
     toastr[type](message).options = {
         "closeButton": true,
         "debug": false,

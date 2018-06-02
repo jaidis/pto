@@ -43,6 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="/assets/js/jquery-jvectormap-2.0.3.min.js" charset="utf-8"></script>
 <script src="/assets/js/jquery-jvectormap-es-merc.min.js" charset="utf-8"></script>
 <script src="/assets/js/jquery.gridder.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/assets/js/jquery.validate.bundle.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/assets/js/main.js" type="text/javascript" charset="utf-8"></script>
 
 <?php
