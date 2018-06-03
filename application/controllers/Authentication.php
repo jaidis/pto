@@ -10,9 +10,9 @@ class Authentication extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-//        $this->load->model('AuthenticationModel', 'portal');
-        $this->load->helper('url');
+        // $this->load->model('AuthenticationModel', 'portal');
         $this->load->library("Aauth");
+        $this->load->helper('url');
     }
 
     public function login()
@@ -63,11 +63,39 @@ class Authentication extends CI_Controller
     public function register()
     {
         if ($this->input->post()) {
-            echo "register";
-//            $this->aauth->create_user();
+
+            $response = array();
+
+            // Aquí se recogen los datos del formulario para añadir un usuario nuevo
+            if (!empty($this->input->post('inputNombre') && !empty($this->input->post('inputApellidos')) && !empty($this->input->post('inputEmailRegistro')) && !empty($this->input->post('inputUser')) && !empty($this->input->post('inputPasswordRegistro')))) {
+                $respuesta = $this->aauth->create_user(
+                    $this->input->post('inputEmailRegistro'),
+                    $this->input->post('inputPasswordRegistro'),
+                    $this->input->post('inputUser'),
+                    $this->input->post('inputNombre'),
+                    $this->input->post('inputApellidos')
+                    );
+
+                if (!empty($respuesta)){
+                    $response['response'] = 'success';
+                    $response['message'] = '¡ Registro completado !';
+                    $this->aauth->login_fast($respuesta);
+                }
+                else{
+                    $messages = '';
+                    foreach ($this->aauth->get_errors_array() as $value) {
+                        $messages .= $value.'<br/>';
+                    }
+                    $response['response'] = 'error';
+                    $response['message'] = $messages;
+                }
+            }
+
+            echo json_encode($response);
         }
         else{
             $data = array();
+            $data['js_to_load'] = "authentication/register.js";
             $this->load->view('header-clean', $data);
             $this->load->view('authentication/register', $data);
             $this->load->view('footer-clean', $data);

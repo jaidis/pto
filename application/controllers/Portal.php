@@ -11,6 +11,7 @@ class Portal extends CI_Controller
     {
         parent::__construct();
         $this->load->model('PortalModel', 'portal');
+        $this->load->library("Aauth");
     }
 
     /**
@@ -19,6 +20,10 @@ class Portal extends CI_Controller
     public function index()
     {
         $data = array();
+        if ( $this->aauth->is_loggedin() ){
+            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
+        }
+
         $data['news'] = $this->portal->getNewsPortal();
         $data['carousel'] = $this->portal->getCarousel();
         $data['activo'] = "";

@@ -59,12 +59,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li>
         </ul>
         <ul class="navbar-nav ml-auto navbar-effect">
+            <?php if (!empty($user)): ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><?php echo $user->username ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><i class="fa fa-power-off"></i></a>
+                </li>
+            <?php else: ?>
             <li class="nav-item <?php echo ($activo == "login") ? "active" : "" ?>">
                 <a class="nav-link" href="/login">Login</a>
             </li>
             <li class="nav-item <?php echo ($activo == "registro") ? "active" : "" ?>">
                 <a class="nav-link" href="/registro">Registro</a>
             </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>
