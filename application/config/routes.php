@@ -66,3 +66,4 @@ $route['logout'] = 'authentication/logout';
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';
 $route['provincia/(:any)'] = 'portal/province/$1';
+$route['contacto'] = 'portal/contact';

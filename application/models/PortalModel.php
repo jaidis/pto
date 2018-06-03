@@ -46,4 +46,13 @@ class PortalModel extends CI_Model
     public function getProvince($map_code){
         return $this->db->get_where('provinces', array('map_code'=> $map_code, 'active'=>1))->result();
     }
+
+    public function setNewContact($array){
+        $this->db->insert('contact',$array);
+        return $this->db->insert_id();
+    }
+
+    public function setNewLog($array){
+        return $this->db->insert('logs',$array);
+    }
 }

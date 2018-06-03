@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    $('[data-toggle="tooltip"]').tooltip();
-
     //===========================================================================
     // REGLA DE VALIDACIÓN PARA EL COMPLEMENTO JQUERY VALIDATOR
     //===========================================================================
@@ -100,9 +98,9 @@ $(document).ready(function () {
                 error: function(data){
                     // console.log(data);
                     lanzarToast('error','¡Se ha producido un error!');
+                    $('#registerButton').removeAttr('disabled');
                 }
             });
-            console.log('validado');
             return false;
         }
     });

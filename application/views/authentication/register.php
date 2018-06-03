@@ -35,13 +35,17 @@
                         <label for="inputUser">Usuario</label>
                         <input type="text" class="form-control" id="inputUser"
                                name="inputUser"
-                               placeholder="Introduzca el usuario">
+                               placeholder="Introduzca el usuario"
+                               data-toggle="tooltip" data-placement="bottom" data-html="true"
+                               title="El nombre de usuario no podrá contener espacios en blanco">
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="inputPasswordRegistro">Contraseña</label>
                         <input type="password" class="form-control" id="inputPasswordRegistro"
                                name="inputPasswordRegistro"
-                               placeholder="Introduzca la contraseña">
+                               placeholder="Introduzca la contraseña"
+                               data-toggle="tooltip" data-placement="bottom" data-html="true"
+                               title="La contraseña tendrá como mínimo 5 caracteres y como máximo 13 caracteres">
                     </div>
                     <div class="form-group col-lg-6">
                         <label for="inputPasswordDuplicateRegistro">Repetir Contraseña</label>
@@ -54,13 +58,14 @@
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="accepted" name="accepted">
                             <label for="accepted" class="custom-control-label">
-                                He leído la política de privacidad
+                                He leído la <a href="#" style="text-decoration: none;">política de privacidad</a>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="registerButton"><i class="fa fa-check mr-1"></i>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="registerButton"><i
+                                class="fa fa-check mr-1"></i>
                         Registrarse
                     </button>
                 </div>

@@ -20,6 +20,8 @@ function lanzarToast (type, message){
 
 $(document).ready(function () {
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     $('.h1-jumbo').waypoint(function() {
         $('.h1-jumbo').addClass('fadeInDown');
     }, { offset: '35%' });
