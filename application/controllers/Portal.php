@@ -21,6 +21,7 @@ class Portal extends CI_Controller
     public function index()
     {
         $data = array();
+
         if ($this->aauth->is_loggedin()) {
             $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
         }
@@ -39,6 +40,11 @@ class Portal extends CI_Controller
     public function provinces()
     {
         $data = array();
+
+        if ($this->aauth->is_loggedin()) {
+            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+        }
+
         $data['activo'] = "provincias";
         $data['js_to_load'] = 'portal/provinces.js';
         $this->load->view('header', $data);
@@ -62,6 +68,10 @@ class Portal extends CI_Controller
             $data['gastronomies'] = $this->portal->getGastronomiesProvince($data['province']->id);
             $data['galleries'] = $this->portal->getProvinceImages($data['province']->id);
 
+            if ($this->aauth->is_loggedin()) {
+                $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+            }
+
             //Generate view for the province template
             $data['activo'] = "provincias";
             $data['css_to_load'] = 'portal/province.css';
@@ -80,7 +90,85 @@ class Portal extends CI_Controller
     }
 
     /**
-     * Call the view for render the data from a province
+     * Call the view for render all news
+     */
+    public function news($map_code = null)
+    {
+        $data = array();
+
+        if ($this->aauth->is_loggedin()) {
+            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+        }
+
+        $data['province'] = $this->portal->getProvince($map_code);
+        if (count($data['province']) > 0) {
+            $data['news'] = $this->portal->getNewsPortal();
+        }
+        else{
+            $data['news'] = $this->portal->getNewsPortal();
+        }
+
+        $data['activo'] = "noticias";
+        $this->load->view('header', $data);
+        $this->load->view('portal/news', $data);
+        $this->load->view('footer', $data);
+    }
+
+    /**
+     * Call the view for render a single news
+     */
+    public function singleNews($id_news = false)
+    {
+        $data = array();
+
+        if (!empty($id_news)){
+
+            $data['buttonComment'] = 'no';
+
+            if ($this->aauth->is_loggedin()) {
+                $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+                $data['buttonComment'] = 'yes';
+            }
+
+            $data['news'] = $this->portal->getNews($id_news);
+            $data['news'] = $data['news'][0];
+            $data['comments'] = $this->portal->getCommentsNews($id_news);
+
+            $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
+
+            //Establecemos el uso horario español
+            date_default_timezone_set('Europe/Madrid');
+            setlocale(LC_TIME, 'spanish');
+            setlocale(LC_TIME, 'es_ES.UTF-8');
+            $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
+            $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
+
+            $data['activo'] = "noticias";
+
+//            echo "<pre>";
+//            print_r($data['news']);
+//            echo '<br/><hr/>';
+//            print_r($data['news_user']);
+//            echo '<br/><hr/>';
+//            print_r($data['comments']);
+//            echo '<br/><hr/>';
+//            echo "</pre>";
+//            $data['js_to_load'] = 'portal/provinces.js';
+            $this->load->view('header', $data);
+            $this->load->view('portal/singleNews', $data);
+            $this->load->view('footer', $data);
+        }
+        else{
+            $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+            $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+            $complete_url = $base_url . $_SERVER["REQUEST_URI"];
+            redirect($base_url . '/noticias');
+        }
+
+    }
+
+    /**
+     * Call the view for render the contact form
      */
     public function contact()
     {

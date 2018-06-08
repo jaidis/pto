@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p class="p-0 m-0"><a href="/cuenta" class="text-white">Cuenta<i class="fa fa-user fa-fw ml-1 icon-left"></i></a></p>
             <p class="p-0 m-0"><a href="/login" class="text-white">Login<i class="fa fa-key fa-fw ml-1 icon-left"></i></a></p>
             <p class="p-0 m-0"><a href="/registro" class="text-white">Regitro<i class="fa fa-user-plus fa-fw ml-1 icon-left"></i></a></p>
-            <p class="p-0 m-0"><a href="/recuperar-cuenta" class="text-white">Recuperar cuenta<i class="fa fa-refresh fa-fw ml-1 icon-left"></i></a></p>
+            <p class="p-0 m-0"><a href="/recuperar" class="text-white">Recuperar cuenta<i class="fa fa-refresh fa-fw ml-1 icon-left"></i></a></p>
         </div>
     </div>
 </footer>

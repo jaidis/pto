@@ -16,14 +16,28 @@ class PortalModel extends CI_Model
        $this->load->database();
     }
 
+    public function getNews($id_news){
+        return $this->db->get_where('news', array('id'=>$id_news))->result();
+    }
+
+    public function getCommentsNews($id_news){
+        $this->db->join('aauth_users', 'aauth_users.id = news_comments.id_user', 'inner');
+        return $this->db->get_where('news_comments', array('id_news'=>$id_news))->result();
+    }
+
     public function getNewsPortal(){
+        $this->db->order_by('date_creation','desc');
+        return $this->db->get('news', 5)->result();
+    }
+
+    public function getNewsPortalNews(){
         $this->db->order_by('date_creation','desc');
         return $this->db->get('news', 5)->result();
     }
 
     public function getNewsPortalProvince($id_province){
         $this->db->order_by('date_creation','desc');
-        return $this->db->get_where('news', array('id_province'=>$id_province), 5)->result();
+        return $this->db->get_where('news', array('id_province'=>$id_province), 3)->result();
     }
 
     public function getMonumentsProvince($id_province){
