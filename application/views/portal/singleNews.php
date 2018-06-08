@@ -39,11 +39,12 @@
                     <div class="card-body">
                         <form role="form" id="commentForm" autocomplete="off">
                             <div class="form-group">
-                                <textarea class="form-control" rows="4" name="message" id="message" <?php echo ($buttonComment == 'no')? 'disabled': '';?>></textarea>
+                                <textarea class="form-control" rows="4" name="message" id="message" ></textarea>
                             </div>
+                            <input type="hidden" id="newsId" name="newsId" value="<?php echo (!empty($news->id)) ? $news->id : '' ; ?>">
                             <input type="hidden" id="activeUser" name="activeUser" value="<?php echo (!empty($user->id)) ? $user->username : '' ; ?>">
                             <input type="hidden" id="activeId" name="activeId" value="<?php echo (!empty($user->id)) ? $user->id : '' ; ?>">
-                            <button type="submit" class="btn btn-primary btn-lg" <?php echo ($buttonComment == 'no')? 'disabled': '';?>>Enviar comentario</button>
+                            <button type="submit" class="btn btn-primary btn-lg" id="commentButton">Enviar comentario</button>
                         </form>
                     </div>
                 </div>

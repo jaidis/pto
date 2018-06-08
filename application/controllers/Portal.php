@@ -117,54 +117,67 @@ class Portal extends CI_Controller
     /**
      * Call the view for render a single news
      */
-    public function singleNews($id_news = false)
+    public function singleNews($id_news = false, $title_news = false)
     {
-        $data = array();
+        if ($this->input->post()) {
 
-        if (!empty($id_news)){
-
-            $data['buttonComment'] = 'no';
-
-            if ($this->aauth->is_loggedin()) {
-                $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
-                $data['buttonComment'] = 'yes';
+            $response = array();
+            if (!empty($this->input->post('activeUser') && !empty($this->input->post('activeId')) && !empty($this->input->post('message')))) {
+                $data['user'] = $this->aauth->get_user($this->input->post('activeId'));
+                if (count($data['user'])>0 && $data['user']->username == $this->input->post('activeUser')){
+                    $this->portal->setNewComment(array(
+                        "id_user"=>$this->input->post('activeId'),
+                        "id_news"=>$this->input->post('newsId'),
+                        "message"=>$this->input->post('message')
+                    ));
+                    $response['response'] = 'success';
+                    $response['message'] = '¡ Información almacenada con éxito !';
+                }
+                else{
+                    $response['response'] = 'error';
+                    $response['message'] = '¡ La información del usuario no es válida !';
+                }
             }
-
-            $data['news'] = $this->portal->getNews($id_news);
-            $data['news'] = $data['news'][0];
-            $data['comments'] = $this->portal->getCommentsNews($id_news);
-
-            $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
-
-            //Establecemos el uso horario español
-            date_default_timezone_set('Europe/Madrid');
-            setlocale(LC_TIME, 'spanish');
-            setlocale(LC_TIME, 'es_ES.UTF-8');
-            $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
-            $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
-
-            $data['activo'] = "noticias";
-
-//            echo "<pre>";
-//            print_r($data['news']);
-//            echo '<br/><hr/>';
-//            print_r($data['news_user']);
-//            echo '<br/><hr/>';
-//            print_r($data['comments']);
-//            echo '<br/><hr/>';
-//            echo "</pre>";
-//            $data['js_to_load'] = 'portal/provinces.js';
-            $this->load->view('header', $data);
-            $this->load->view('portal/singleNews', $data);
-            $this->load->view('footer', $data);
+            else{
+                $response['response'] = 'error';
+                $response['message'] = '¡ Se ha producido un error con el comentario !';
+            }
+            echo json_encode($response);
         }
         else{
-            $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
-            $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
-            $complete_url = $base_url . $_SERVER["REQUEST_URI"];
-            redirect($base_url . '/noticias');
-        }
 
+            $data = array();
+
+            if (!empty($id_news)){
+
+                $data['disableComment'] = 'no';
+
+                $data['news'] = $this->portal->getNews($id_news);
+                $data['news'] = $data['news'][0];
+                $data['comments'] = $this->portal->getCommentsNews($id_news);
+
+                $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
+
+                // Set Spanish date timezone
+                date_default_timezone_set('Europe/Madrid');
+                setlocale(LC_TIME, 'spanish');
+                setlocale(LC_TIME, 'es_ES.UTF-8');
+                $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
+                $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
+
+                $data['activo'] = "noticias";
+                $data['js_to_load'] = 'portal/singleNews.js';
+                $this->load->view('header', $data);
+                $this->load->view('portal/singleNews', $data);
+                $this->load->view('footer', $data);
+            }
+            else{
+                $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+                $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+                $complete_url = $base_url . $_SERVER["REQUEST_URI"];
+                redirect($base_url . '/noticias');
+            }
+        }
     }
 
     /**
@@ -176,7 +189,6 @@ class Portal extends CI_Controller
 
             $response = array();
 
-            // Aquí se recogen los datos del formulario para añadir un nuevo contacto
             if (!empty($this->input->post('contactName') && !empty($this->input->post('contactMail')) && !empty($this->input->post('contactPhone')) && !empty($this->input->post('contactMessage')))) {
 
                 $respuesta = $this->portal->setNewContact(array(

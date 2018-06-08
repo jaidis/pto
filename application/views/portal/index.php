@@ -15,7 +15,7 @@
                     <img src="/assets/img/pto.png" class="img-fluid h1-jumbo animated" style="opacity:0;">
                 </div>
                 <p class="lead text-white animated" id="p-jumbo">Bienvenido/a al Portal Turismo y Ocio, aquí encontrarás
-                    toda la información sobre los monumentos y la gastronomía típica de las provincias de españolas.
+                    toda la información sobre los monumentos y la gastronomía típica de las provincias españolas.
                     Desde el equipo del Portal Turismo y Ocio te invitamos a registrarte para que puedas dar tu opinión
                     sobre los monumentos que ya has visitado y así ayudar a otros visitantes para que puedan visitar
                     dicho escenario. Además te mantendremos informado de las últimas noticias que se publican diriamente
@@ -31,7 +31,7 @@
                 <?php
                 foreach ($news as $new):
                 ?>
-                <a href="<?php echo $new->url;?>" class="list-group-item list-group-item-action flex-column align-items-start">
+                <a href="/noticia/<?php echo $new->id ."/".$new->url;?>" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="img-div">
                         <img class="img-thumbnail img-news" src="/assets/img/news/<?php echo ($new->image_url != null) ? $new->image_url : 'not-found-1024-768.jpg'; ?>" alt="">
                     </div>
