@@ -12,11 +12,11 @@
             <!-- Post Content Column -->
             <div class="jumbotron jumbotron-description">
                 <!-- Title -->
-                <h2 class="mt-4 title-news"><?php echo $news->title; ?></h2>
+                <h2 class="mt-4 title-news"><?php echo $gastronomies->name; ?></h2>
                 <!-- Author -->
                 <p class="lead"> Redactado por
                     <span class="text-success">
-                        <?php echo $news_user->first_name .' '.$news_user->last_name .' - '. $news_user->username ?>
+                        <?php echo $comments_user->first_name .' '.$comments_user->last_name .' - '. $comments_user->username ?>
                     </span>
                 </p>
                 <hr>
@@ -25,14 +25,29 @@
                 <hr>
                 <!-- Preview Image -->
                 <span class="text-center">
-                    <img class="mx-auto d-block img-fluid rounded" src="/assets/img/news/<?php echo ($news->image_url != null) ? $news->image_url : 'not-found-1920-1080.jpg'; ?>" alt="">
+                    <img class="mx-auto d-block img-fluid rounded" src="/assets/img/gastronomies/<?php echo ($gastronomies->image_url != null) ? $gastronomies->image_url : 'not-found-1024-768.jpg'; ?>" alt="">
                 </span>
                 <hr>
-                <!-- Post Content -->
-                <div class="lead">
-                    <?php echo $news->description; ?>
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <!-- Ingredients Content -->
+                        <p class="lead">Ingredientes</p>
+                        <hr>
+                        <div class="lead">
+                            <?php echo $gastronomies->ingredients; ?>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <!-- Elaboration Content -->
+                        <p class="lead">Elaboración</p>
+                        <hr>
+                        <div class="lead">
+                            <?php echo $gastronomies->elaboration; ?>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-                <hr>
                 <!-- Comments Form -->
                 <div class="card border-primary my-4">
                     <h5 class="card-header bg-primary text-white">Deja un comentario</h5>
@@ -41,7 +56,7 @@
                             <div class="form-group">
                                 <textarea class="form-control" rows="4" name="message" id="message" ></textarea>
                             </div>
-                            <input type="hidden" id="newsId" name="newsId" value="<?php echo (!empty($news->id)) ? $news->id : '' ; ?>">
+                            <input type="hidden" id="gastronomiesId" name="gastronomiesId" value="<?php echo (!empty($gastronomies->id)) ? $gastronomies->id : '' ; ?>">
                             <input type="hidden" id="activeUser" name="activeUser" value="<?php echo (!empty($user->id)) ? $user->username : '' ; ?>">
                             <input type="hidden" id="activeId" name="activeId" value="<?php echo (!empty($user->id)) ? $user->id : '' ; ?>">
                             <button type="submit" class="btn btn-primary btn-lg" id="commentButton">Enviar comentario</button>
@@ -65,7 +80,7 @@
                         <img class="d-flex mr-3 rounded-circle" src="/assets/img/users/logo.png" alt="Portal Turismo y Ocio" width="70px">
                         <div class="media-body">
                             <h5 class="mt-0">Portal Turismo y Ocio</h5>
-                            Hola, en estos momentos nadie ha escrito un comentario, por favor, escribe uno y dinos que te ha parecido esta noticia.
+                            Hola, en estos momentos nadie ha escrito un comentario, por favor, escribe uno y dinos que te ha parecido esta receta.
                         </div>
                     </div>
                 <?php endif; ?>

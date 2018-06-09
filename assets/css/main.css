@@ -41,7 +41,7 @@ body {
 ******************************************************************************/
 
 .bg-main {
-    background-color: #ecf7ff
+    background-color: #ecf7ff;
 }
 
 /******************************************************************************
@@ -106,12 +106,71 @@ body {
     margin: 0 !important;
 }
 
-.href-card {
-    color: #2c3e50;
+.card-url{
+    text-decoration: none !important;
 }
 
-.href-card:hover {
-    background-color: #ecf0f1;
+/******************************************************************************
+*
+*  Monument Card
+*
+******************************************************************************/
+
+.card-monument{
+    margin-top:20px;
+}
+
+.card-monument .card-img-block {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+
+}
+.card-monument .card-img-block img{
+    border-radius:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.63);
+}
+
+.card-monument .card-title{
+    text-align: center;
+}
+
+.card-monument:hover {
+    background-color: #ecf0f1 !important;
+    color: #18BC9C !important;
+    text-decoration: none;
+}
+
+/******************************************************************************
+*
+*  Gastronomy Card
+*
+******************************************************************************/
+
+.card-gastronomy{
+    margin-top:20px;
+}
+
+.card-gastronomy .card-img-block {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+
+}
+.card-gastronomy .card-img-block img{
+    border-radius:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.63);
+}
+
+.card-gastronomy .card-title{
+    text-align: center;
+}
+
+.card-gastronomy:hover {
+    background-color: #ecf0f1 !important;
+    color: #18BC9C !important;
     text-decoration: none;
 }
 
@@ -272,6 +331,24 @@ body {
 #mapa {
     min-width: 98%;
     height: 72vh;
+}
+
+/******************************************************************************
+*
+*  Title-news
+*
+******************************************************************************/
+
+.title-news {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .title-news {
+        font-size: 2.5rem;
+    }
 }
 
 /******************************************************************************

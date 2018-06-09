@@ -107,6 +107,119 @@ class Portal extends CI_Controller
 
     }
 
+    // ++++++++++++++++++++ TODO CUT HERE +++++++++++++++++++++++++++++
+    /**
+     * Call the view for render all gastronomies
+     */
+    public function gastronomies($page=0)
+    {
+        $data = array();
+
+        if ($this->aauth->is_loggedin()) {
+            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+        }
+
+        $gastronomiesPerPage = 9;
+
+        if ($page == 0) {
+            $data['gastronomies'] = $this->portal->getGastronomiesPerPage($gastronomiesPerPage,0);
+        }
+        else{
+            $data['gastronomies'] = $this->portal->getGastronomiesPerPage($gastronomiesPerPage,$page);
+        }
+
+        foreach ($data['gastronomies'] as $gastronomie){
+            $gastronomie->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($gastronomie->date_creation))));
+            $gastronomie->fecha = $gastronomie->fecha[1].' de '.$gastronomie->fecha[0]. ' del '.$gastronomie->fecha[3].' a las '.$gastronomie->fecha[4];
+        }
+
+        //Cargar paginación
+        $config['full_tag_open'] = '<div class="btn-group" role="group">';
+        $config['full_tag_close'] = '</div>';
+        $config['cur_tag_open'] = '<button type="button" class="btn btn-primary btn-lg">';
+        $config['cur_tag_close'] = '</button>';
+        $config['first_link'] = '«';
+        $config['prev_link'] = '‹';
+        $config['last_link'] = '»';
+        $config['next_link'] = '›';
+        $config['base_url'] = '/gastronomias/';
+        $config['total_rows'] = count($this->portal->getAllGastronomies());
+        $config['per_page'] = $gastronomiesPerPage;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+
+
+        $data['activo'] = "gastronomia";
+        $this->load->view('header', $data);
+        $this->load->view('portal/gastronomies', $data);
+        $this->load->view('footer', $data);
+    }
+
+    /**
+     * Call the view for render a single gastronomy
+     */
+    public function singleGastronomy($id_gastronomy = false, $title_gastronomy = false)
+    {
+        if ($this->input->post()) {
+
+            $response = array();
+            if (!empty($this->input->post('activeUser') && !empty($this->input->post('activeId')) && !empty($this->input->post('message')))) {
+                $data['user'] = $this->aauth->get_user($this->input->post('activeId'));
+                if (count($data['user'])>0 && $data['user']->username == $this->input->post('activeUser')){
+                    $this->portal->setNewGastronomiesComment(array(
+                        "id_user"=>$this->input->post('activeId'),
+                        "id_gastronomies"=>$this->input->post('gastronomiesId'),
+                        "message"=>$this->input->post('message')
+                    ));
+                    $response['response'] = 'success';
+                    $response['message'] = '¡ Información almacenada con éxito !';
+                }
+                else{
+                    $response['response'] = 'error';
+                    $response['message'] = '¡ La información del usuario no es válida !';
+                }
+            }
+            else{
+                $response['response'] = 'error';
+                $response['message'] = '¡ Se ha producido un error con el comentario !';
+            }
+            echo json_encode($response);
+        }
+        else{
+
+            $data = array();
+
+            if (!empty($id_gastronomy)){
+
+                if ($this->aauth->is_loggedin()) {
+                    $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+                }
+
+                $data['gastronomies'] = $this->portal->getGastronomy($id_gastronomy);
+                $data['gastronomies'] = $data['gastronomies'][0];
+                $data['comments'] = $this->portal->getCommentsGastronomies($id_gastronomy);
+
+                $data['comments_user'] = $this->aauth->get_user($data['gastronomies']->id_admin);
+
+                $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['gastronomies']->date_creation))));
+                $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
+
+                $data['activo'] = "gastronomia";
+                $data['js_to_load'] = 'portal/singleGastronomy.js';
+                $this->load->view('header', $data);
+                $this->load->view('portal/singleGastronomy', $data);
+                $this->load->view('footer', $data);
+            }
+            else{
+                $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+                $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+                $complete_url = $base_url . $_SERVER["REQUEST_URI"];
+                redirect($base_url . '/gastronomias');
+            }
+        }
+    }
+    // ++++++++++++++++++++ TODO END CUT HERE +++++++++++++++++++++++++++++
+
     /**
      * Call the view for render all news
      */
@@ -164,44 +277,55 @@ class Portal extends CI_Controller
         $data['province'] = $this->portal->getProvince($map_code);
         $data['province'] = $data['province'][0];
 
-        if ($this->aauth->is_loggedin()) {
-            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
-        }
+        if (count($this->portal->getAllNewsProvince($data['province']->id)) > 0){
 
-        $newsPerPage = 10;
+            if ($this->aauth->is_loggedin()) {
+                $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+            }
 
-        if ($page == 0) {
-            $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, 0);
+            $newsPerPage = 10;
+
+            if ($page == 0) {
+                $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, 0);
+            }
+            else{
+                $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, $page);
+            }
+
+            foreach ($data['news'] as $news){
+                $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
+                $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
+            }
+
+            //Cargar paginación
+            $config['full_tag_open'] = '<div class="btn-group" role="group">';
+            $config['full_tag_close'] = '</div>';
+            $config['cur_tag_open'] = '<button type="button" class="btn btn-primary btn-lg">';
+            $config['cur_tag_close'] = '</button>';
+            $config['first_link'] = '«';
+            $config['prev_link'] = '‹';
+            $config['last_link'] = '»';
+            $config['next_link'] = '›';
+            $config['base_url'] = '/noticias/'.$map_code.'/';
+            $config['total_rows'] = count($this->portal->getAllNewsProvince($data['province']->id));
+            $config['per_page'] = $newsPerPage;
+            $this->pagination->initialize($config);
+            $data['pagination'] = $this->pagination->create_links();
+
+
+            $data['activo'] = "noticias";
+            $this->load->view('header', $data);
+            $this->load->view('portal/news', $data);
+            $this->load->view('footer', $data);
         }
         else{
-            $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, $page);
+            $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+            $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+            $complete_url = $base_url . $_SERVER["REQUEST_URI"];
+            redirect($base_url . '/noticias');
         }
 
-        foreach ($data['news'] as $news){
-            $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
-            $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
-        }
 
-        //Cargar paginación
-        $config['full_tag_open'] = '<div class="btn-group" role="group">';
-        $config['full_tag_close'] = '</div>';
-        $config['cur_tag_open'] = '<button type="button" class="btn btn-primary btn-lg">';
-        $config['cur_tag_close'] = '</button>';
-        $config['first_link'] = '«';
-        $config['prev_link'] = '‹';
-        $config['last_link'] = '»';
-        $config['next_link'] = '›';
-        $config['base_url'] = '/noticias/'.$map_code.'/';
-        $config['total_rows'] = count($this->portal->getAllNewsProvince($data['province']->id));
-        $config['per_page'] = $newsPerPage;
-        $this->pagination->initialize($config);
-        $data['pagination'] = $this->pagination->create_links();
-
-
-        $data['activo'] = "noticias";
-        $this->load->view('header', $data);
-        $this->load->view('portal/news', $data);
-        $this->load->view('footer', $data);
     }
 
     /**
