@@ -13,6 +13,13 @@ class Portal extends CI_Controller
         $this->load->model('PortalModel', 'portal');
         $this->load->library("Aauth");
         $this->load->library('Utils');
+        $this->load->library('pagination');
+        $this->load->helper('url');
+
+        // Set Spanish date timezone
+        date_default_timezone_set('Europe/Madrid');
+        setlocale(LC_TIME, 'spanish');
+        setlocale(LC_TIME, 'es_ES.UTF-8');
     }
 
     /**
@@ -26,8 +33,14 @@ class Portal extends CI_Controller
             $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
         }
 
-        $data['news'] = $this->portal->getNewsPortal();
         $data['carousel'] = $this->portal->getCarousel();
+        $data['news'] = $this->portal->getNewsPortal();
+
+        foreach ($data['news'] as $news){
+            $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
+            $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
+        }
+
         $data['activo'] = "";
         $this->load->view('header', $data);
         $this->load->view('portal/index', $data);
@@ -72,6 +85,11 @@ class Portal extends CI_Controller
                 $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
             }
 
+            foreach ($data['news'] as $news){
+                $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
+                $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
+            }
+
             //Generate view for the province template
             $data['activo'] = "provincias";
             $data['css_to_load'] = 'portal/province.css';
@@ -92,9 +110,59 @@ class Portal extends CI_Controller
     /**
      * Call the view for render all news
      */
-    public function news($map_code = null)
+    public function news($page=0)
     {
         $data = array();
+
+        if ($this->aauth->is_loggedin()) {
+            $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+        }
+
+        $newsPerPage = 10;
+
+        if ($page == 0) {
+            $data['news'] = $this->portal->getNewsPortalNews($newsPerPage,0);
+        }
+        else{
+            $data['news'] = $this->portal->getNewsPortalNews($newsPerPage,$page);
+        }
+
+        foreach ($data['news'] as $news){
+            $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
+            $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
+        }
+
+        //Cargar paginación
+        $config['full_tag_open'] = '<div class="btn-group" role="group">';
+        $config['full_tag_close'] = '</div>';
+        $config['cur_tag_open'] = '<button type="button" class="btn btn-primary btn-lg">';
+        $config['cur_tag_close'] = '</button>';
+        $config['first_link'] = '«';
+        $config['prev_link'] = '‹';
+        $config['last_link'] = '»';
+        $config['next_link'] = '›';
+        $config['base_url'] = '/noticias/';
+        $config['total_rows'] = count($this->portal->getAllNews());
+        $config['per_page'] = $newsPerPage;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+
+
+        $data['activo'] = "noticias";
+        $this->load->view('header', $data);
+        $this->load->view('portal/news', $data);
+        $this->load->view('footer', $data);
+    }
+
+    /**
+     * Call the view for render all news
+     */
+    public function newsProvinces($map_code = null, $page=0)
+    {
+        echo "Noticias de las provincias <br/>";
+        echo "Mapa: $map_code <br/>";
+        echo "Pagina: $page <br/>";
+/*        $data = array();
 
         if ($this->aauth->is_loggedin()) {
             $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
@@ -108,10 +176,15 @@ class Portal extends CI_Controller
             $data['news'] = $this->portal->getNewsPortal();
         }
 
+        foreach ($data['news'] as $news){
+            $news->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($news->date_creation))));
+            $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
+        }
+
         $data['activo'] = "noticias";
         $this->load->view('header', $data);
         $this->load->view('portal/news', $data);
-        $this->load->view('footer', $data);
+        $this->load->view('footer', $data);*/
     }
 
     /**
@@ -150,7 +223,9 @@ class Portal extends CI_Controller
 
             if (!empty($id_news)){
 
-                $data['disableComment'] = 'no';
+                if ($this->aauth->is_loggedin()) {
+                    $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+                }
 
                 $data['news'] = $this->portal->getNews($id_news);
                 $data['news'] = $data['news'][0];
@@ -158,10 +233,6 @@ class Portal extends CI_Controller
 
                 $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
 
-                // Set Spanish date timezone
-                date_default_timezone_set('Europe/Madrid');
-                setlocale(LC_TIME, 'spanish');
-                setlocale(LC_TIME, 'es_ES.UTF-8');
                 $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
                 $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
 

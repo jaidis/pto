@@ -40,7 +40,7 @@
                             <h3 class="text-primary text-title"><?php echo $new->title;?></h3>
                         </div>
                         <p class="mb-1 lead text-primary d-none d-xl-flex"><?php echo $new->subtitle;?></p>
-                        <p class="text-muted mt-2 text-right"><?php echo $new->date_creation;?></p>
+                        <p class="text-muted mt-2 text-left"><?php echo $new->fecha; ?></p>
                     </div>
                 </a>
                 <?php

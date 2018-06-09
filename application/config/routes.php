@@ -66,10 +66,16 @@ $route['logout'] = 'authentication/logout';
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';
 $route['provincia/(:any)'] = 'portal/province/$1';
+
 $route['noticias'] = 'portal/news';
-$route['noticias/(:any)'] = 'portal/news/$1';
+$route['noticias/(:num)'] = 'portal/news/$1';
+$route['noticias/(:any)'] = 'portal/newsProvinces/$1';
+$route['noticias/(:any)/(:num)'] = 'portal/newsProvinces/$1/$2';
+$route['noticias/(:any)/(:any)'] = 'portal/news';
+
 $route['noticia'] = 'portal';
 $route['noticia/(:any)'] = 'portal/news';
 $route['noticia/(:num)/(:any)'] = 'portal/singleNews/$1/$2';
 $route['noticia/(:any)/(:any)'] = 'portal/news';
+
 $route['contacto'] = 'portal/contact';
