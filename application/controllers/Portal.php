@@ -121,10 +121,10 @@ class Portal extends CI_Controller
         $newsPerPage = 10;
 
         if ($page == 0) {
-            $data['news'] = $this->portal->getNewsPortalNews($newsPerPage,0);
+            $data['news'] = $this->portal->getNewsPerPage($newsPerPage,0);
         }
         else{
-            $data['news'] = $this->portal->getNewsPortalNews($newsPerPage,$page);
+            $data['news'] = $this->portal->getNewsPerPage($newsPerPage,$page);
         }
 
         foreach ($data['news'] as $news){
@@ -159,21 +159,22 @@ class Portal extends CI_Controller
      */
     public function newsProvinces($map_code = null, $page=0)
     {
-        echo "Noticias de las provincias <br/>";
-        echo "Mapa: $map_code <br/>";
-        echo "Pagina: $page <br/>";
-/*        $data = array();
+        $data = array();
+
+        $data['province'] = $this->portal->getProvince($map_code);
+        $data['province'] = $data['province'][0];
 
         if ($this->aauth->is_loggedin()) {
             $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
         }
 
-        $data['province'] = $this->portal->getProvince($map_code);
-        if (count($data['province']) > 0) {
-            $data['news'] = $this->portal->getNewsPortal();
+        $newsPerPage = 10;
+
+        if ($page == 0) {
+            $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, 0);
         }
         else{
-            $data['news'] = $this->portal->getNewsPortal();
+            $data['news'] = $this->portal->getNewsProvincePerPage($data['province']->id, $newsPerPage, $page);
         }
 
         foreach ($data['news'] as $news){
@@ -181,10 +182,26 @@ class Portal extends CI_Controller
             $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
         }
 
+        //Cargar paginación
+        $config['full_tag_open'] = '<div class="btn-group" role="group">';
+        $config['full_tag_close'] = '</div>';
+        $config['cur_tag_open'] = '<button type="button" class="btn btn-primary btn-lg">';
+        $config['cur_tag_close'] = '</button>';
+        $config['first_link'] = '«';
+        $config['prev_link'] = '‹';
+        $config['last_link'] = '»';
+        $config['next_link'] = '›';
+        $config['base_url'] = '/noticias/'.$map_code.'/';
+        $config['total_rows'] = count($this->portal->getAllNewsProvince($data['province']->id));
+        $config['per_page'] = $newsPerPage;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+
+
         $data['activo'] = "noticias";
         $this->load->view('header', $data);
         $this->load->view('portal/news', $data);
-        $this->load->view('footer', $data);*/
+        $this->load->view('footer', $data);
     }
 
     /**
