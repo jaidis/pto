@@ -56,35 +56,6 @@ class PortalModel extends CI_Model
             return $query;
     }
 
-    // ++++++++++++++++++++ TODO CUT HERE +++++++++++++++++++++++++++++
-    public function getGastronomy($id_gastronomy){
-        return $this->db->get_where('gastronomies', array('id'=>$id_gastronomy))->result();
-    }
-
-    public function getAllGastronomies()
-    {
-        return $this->db->get('gastronomies')->result();
-    }
-
-    public function getCommentsGastronomies($id_gastronomy){
-        $this->db->join('aauth_users', 'aauth_users.id = gastronomies_comments.id_user', 'inner');
-        return $this->db->get_where('gastronomies_comments', array('id_gastronomies'=>$id_gastronomy))->result();
-    }
-
-    public function getGastronomiesPerPage($newsPerPage=10, $page){
-        $totalNews = $this->db->get('news')->num_rows();
-        $this->db->order_by('date_creation','desc');
-        $query = $this->db->get('gastronomies',$newsPerPage,$page)->result();
-        if($totalNews>0)
-            return $query;
-    }
-
-    public function setNewGastronomiesComment($array){
-        $this->db->insert('gastronomies_comments',$array);
-        return $this->db->insert_id();
-    }
-    // ++++++++++++++++++++ TODO END CUT HERE +++++++++++++++++++++++++++++
-
     public function getNewsPortalProvince($id_province){
         $this->db->order_by('date_creation','desc');
         return $this->db->get_where('news', array('id_province'=>$id_province), 3)->result();

@@ -63,16 +63,16 @@ $route['password'] = 'authentication/login';
 $route['password/(:any)'] = 'authentication/recoverPassword';
 $route['logout'] = 'authentication/logout';
 
-$route['gastronomias'] = 'portal/gastronomies';
-$route['gastronomias/(:num)'] = 'portal/gastronomies/$1';
-$route['gastronomias/(:any)'] = 'portal/gastronomiesProvinces/$1';
-$route['gastronomias/(:any)/(:num)'] = 'portal/gastronomiesProvinces/$1/$2';
-$route['gastronomias/(:any)/(:any)'] = 'portal/gastronomies';
+$route['gastronomias'] = 'gastronomy/gastronomies';
+$route['gastronomias/(:num)'] = 'gastronomy/gastronomies/$1';
+$route['gastronomias/(:any)'] = 'gastronomy/gastronomiesProvinces/$1';
+$route['gastronomias/(:any)/(:num)'] = 'gastronomy/gastronomiesProvinces/$1/$2';
+$route['gastronomias/(:any)/(:any)'] = 'gastronomy/gastronomies';
 
 $route['gastronomia'] = 'portal';
-$route['gastronomia/(:any)'] = 'portal/gastronomies';
-$route['gastronomia/(:num)/(:any)'] = 'portal/singleGastronomy/$1/$2';
-$route['gastronomia/(:any)/(:any)'] = 'portal/gastronomies';
+$route['gastronomia/(:any)'] = 'gastronomy/gastronomies';
+$route['gastronomia/(:num)/(:any)'] = 'gastronomy/singleGastronomy/$1/$2';
+$route['gastronomia/(:any)/(:any)'] = 'gastronomy/gastronomies';
 
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';
