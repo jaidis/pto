@@ -15,6 +15,7 @@ class GastronomyModel extends CI_Model
         parent::__construct();
        $this->load->database();
     }
+
     public function getProvince($map_code){
         return $this->db->get_where('provinces', array('map_code'=> $map_code, 'active'=>1))->result();
     }

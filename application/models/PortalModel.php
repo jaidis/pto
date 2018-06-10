@@ -16,44 +16,9 @@ class PortalModel extends CI_Model
        $this->load->database();
     }
 
-    public function getNews($id_news){
-        return $this->db->get_where('news', array('id'=>$id_news))->result();
-    }
-
-    public function getAllNews()
-    {
-        return $this->db->get('news')->result();
-    }
-
-    public function getAllNewsProvince($id_province)
-    {
-        return $this->db->get_where('news',array('id_province'=>$id_province))->result();
-    }
-
-    public function getCommentsNews($id_news){
-        $this->db->join('aauth_users', 'aauth_users.id = news_comments.id_user', 'inner');
-        return $this->db->get_where('news_comments', array('id_news'=>$id_news))->result();
-    }
-
     public function getNewsPortal(){
         $this->db->order_by('date_creation','desc');
         return $this->db->get('news', 5)->result();
-    }
-
-    public function getNewsPerPage($newsPerPage=10, $page){
-        $totalNews = $this->db->get('news')->num_rows();
-        $this->db->order_by('date_creation','desc');
-        $query = $this->db->get('news',$newsPerPage,$page)->result();
-        if($totalNews>0)
-            return $query;
-    }
-
-    public function getNewsProvincePerPage($id_province, $newsPerPage=10, $page){
-        $totalNews = $this->db->get('news')->num_rows();
-        $this->db->order_by('date_creation','desc');
-        $query = $this->db->get_where('news',array('id_province'=>$id_province),$newsPerPage,$page)->result();
-        if($totalNews>0)
-            return $query;
     }
 
     public function getNewsPortalProvince($id_province){
@@ -82,17 +47,9 @@ class PortalModel extends CI_Model
         return $this->db->get_where('provinces', array('map_code'=> $map_code, 'active'=>1))->result();
     }
 
-    public function setNewComment($array){
-        $this->db->insert('news_comments',$array);
-        return $this->db->insert_id();
-    }
-
     public function setNewContact($array){
         $this->db->insert('contact',$array);
         return $this->db->insert_id();
     }
 
-    public function setNewLog($array){
-        return $this->db->insert('logs',$array);
-    }
 }
