@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Gastronomy extends CI_Controller
+class Monuments extends CI_Controller
 {
 
     /**
-     * Gastronomy constructor.
+     * Monuments constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('GastronomyModel', 'gastronomy');
+        $this->load->model('MonumentsModel', 'monuments');
         $this->load->library("Aauth");
         $this->load->library('Utils');
         $this->load->library('pagination');
@@ -23,9 +23,9 @@ class Gastronomy extends CI_Controller
     }
 
     /**
-     * Call the view for render all gastronomies
+     * Call the view for render all monuments
      */
-    public function gastronomies($page=0)
+    public function monuments($page=0)
     {
         $data = array();
 
@@ -33,18 +33,18 @@ class Gastronomy extends CI_Controller
             $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
         }
 
-        $gastronomiesPerPage = 9;
+        $monumentsPerPage = 9;
 
         if ($page == 0) {
-            $data['gastronomies'] = $this->gastronomy->getGastronomiesPerPage($gastronomiesPerPage,0);
+            $data['monuments'] = $this->monuments->getMonumentsPerPage($monumentsPerPage,0);
         }
         else{
-            $data['gastronomies'] = $this->gastronomy->getGastronomiesPerPage($gastronomiesPerPage,$page);
+            $data['monuments'] = $this->monuments->getMonumentsPerPage($monumentsPerPage,$page);
         }
 
-        foreach ($data['gastronomies'] as $gastronomie){
-            $gastronomie->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($gastronomie->date_creation))));
-            $gastronomie->fecha = $gastronomie->fecha[1].' de '.$gastronomie->fecha[0]. ' del '.$gastronomie->fecha[3].' a las '.$gastronomie->fecha[4];
+        foreach ($data['monuments'] as $monument){
+            $monument->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($monument->date_creation))));
+            $monument->fecha = $monument->fecha[1].' de '.$monument->fecha[0]. ' del '.$monument->fecha[3].' a las '.$monument->fecha[4];
         }
 
         //Cargar paginación
@@ -56,30 +56,30 @@ class Gastronomy extends CI_Controller
         $config['prev_link'] = '‹';
         $config['last_link'] = '»';
         $config['next_link'] = '›';
-        $config['base_url'] = '/gastronomias/';
-        $config['total_rows'] = count($this->gastronomy->getAllGastronomies());
-        $config['per_page'] = $gastronomiesPerPage;
+        $config['base_url'] = '/monumentos/';
+        $config['total_rows'] = count($this->monuments->getAllMonuments());
+        $config['per_page'] = $monumentsPerPage;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
 
 
-        $data['activo'] = "gastronomia";
+        $data['activo'] = "monumentos";
         $this->load->view('header', $data);
-        $this->load->view('gastronomy/gastronomies', $data);
+        $this->load->view('monuments/monuments', $data);
         $this->load->view('footer', $data);
     }
 
     /**
      * Call the view for render all gastronomies from a Province
      */
-    public function gastronomiesProvinces($map_code = null, $page=0)
+    public function monumentsProvinces($map_code = null, $page=0)
     {
         $data = array();
 
-        $data['province'] = $this->gastronomy->getProvince($map_code);
+        $data['province'] = $this->monuments->getProvince($map_code);
         $data['province'] = $data['province'][0];
 
-        if (count($this->gastronomy->getAllGastronomiesProvince($data['province']->id)) > 0){
+        if (count($this->monuments->getAllMonumentsProvince($data['province']->id)) > 0){
 
             if ($this->aauth->is_loggedin()) {
                 $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
@@ -88,13 +88,13 @@ class Gastronomy extends CI_Controller
             $newsPerPage = 9;
 
             if ($page == 0) {
-                $data['gastronomies'] = $this->gastronomy->getGastronomiesProvincePerPage($data['province']->id, $newsPerPage, 0);
+                $data['monuments'] = $this->monuments->getMonumentsProvincePerPage($data['province']->id, $newsPerPage, 0);
             }
             else{
-                $data['gastronomies'] = $this->gastronomy->getGastronomiesProvincePerPage($data['province']->id, $newsPerPage, $page);
+                $data['monuments'] = $this->monuments->getMonumentsProvincePerPage($data['province']->id, $newsPerPage, $page);
             }
 
-            foreach ($data['gastronomies'] as $gastronomy){
+            foreach ($data['monuments'] as $gastronomy){
                 $gastronomy->fecha = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($gastronomy->date_creation))));
                 $gastronomy->fecha = $gastronomy->fecha[1].' de '.$gastronomy->fecha[0]. ' del '.$gastronomy->fecha[3].' a las '.$gastronomy->fecha[4];
             }
@@ -108,16 +108,16 @@ class Gastronomy extends CI_Controller
             $config['prev_link'] = '‹';
             $config['last_link'] = '»';
             $config['next_link'] = '›';
-            $config['base_url'] = '/gastronomias/'.$map_code.'/';
-            $config['total_rows'] = count($this->gastronomy->getAllGastronomiesProvince($data['province']->id));
+            $config['base_url'] = '/monumentos/'.$map_code.'/';
+            $config['total_rows'] = count($this->monuments->getAllMonumentsProvince($data['province']->id));
             $config['per_page'] = $newsPerPage;
             $this->pagination->initialize($config);
             $data['pagination'] = $this->pagination->create_links();
 
 
-            $data['activo'] = "gastronomia";
+            $data['activo'] = "monumentos";
             $this->load->view('header', $data);
-            $this->load->view('gastronomy/gastronomies', $data);
+            $this->load->view('monuments/monuments', $data);
             $this->load->view('footer', $data);
         }
         else{
@@ -133,7 +133,7 @@ class Gastronomy extends CI_Controller
     /**
      * Call the view for render a single gastronomy
      */
-    public function singleGastronomy($id_gastronomy = false, $title_gastronomy = false)
+    public function singleMonument($id_monument = false, $title_gastronomy = false)
     {
         if ($this->input->post()) {
 
@@ -141,12 +141,12 @@ class Gastronomy extends CI_Controller
             if (!empty($this->input->post('activeUser') && !empty($this->input->post('activeId')) && !empty($this->input->post('message')))) {
                 $data['user'] = $this->aauth->get_user($this->input->post('activeId'));
                 if (count($data['user'])>0 && $data['user']->username == $this->input->post('activeUser')){
-                    $result = $this->gastronomy->setNewComment(array(
+                    $result = $this->monuments->setNewComment(array(
                         "id_user"=>$this->input->post('activeId'),
                         "id_gastronomies"=>$this->input->post('gastronomiesId'),
                         "message"=>$this->input->post('message')
                     ));
-                    $this->gastronomy->setNewLog(array(
+                    $this->monuments->setNewLog(array(
                         "event_name" => "Nuevo comentario",
                         "event_description" => "Comentario ID '".$result."', Gastronomia ID'".$this->input->post('gastronomiesId')."', Usuario ID'".$this->input->post('activeId')."'",
                         "event_type" => "info",
@@ -170,39 +170,42 @@ class Gastronomy extends CI_Controller
 
             $data = array();
 
-            if (!empty($id_gastronomy)){
+            if (!empty($id_monument)){
 
-                $data['gastronomies'] = $this->gastronomy->getGastronomy($id_gastronomy);
+                $data['monuments'] = $this->monuments->getMonument($id_monument);
 
-                if(count($data['gastronomies']) > 0){
+                if (count($data['monuments'])>0){
 
                     if ($this->aauth->is_loggedin()) {
                         $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
                     }
 
-                    $data['gastronomies'] = $data['gastronomies'][0];
-                    $data['comments'] = $this->gastronomy->getCommentsGastronomies($id_gastronomy);
+                    $data['monuments'] = $data['monuments'][0];
+                    $data['comments'] = $this->monuments->getCommentsMonuments($id_monument);
 
-                    $data['comments_user'] = $this->aauth->get_user($data['gastronomies']->id_admin);
+                    $data['comments_user'] = $this->aauth->get_user($data['monuments']->id_admin);
 
-                    $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['gastronomies']->date_creation))));
+                    $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['monuments']->date_creation))));
                     $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
 
-                    $data['ingredients'] = explode(';',$data['gastronomies']->ingredients);
-                    $data['elaboration'] = explode(';',$data['gastronomies']->elaboration);
+                    print_r($data['monuments']);
+                    echo "<br><hr>";
+                    print_r($data['comments']);
+                    echo "<br><hr>";
+                    print_r($data['comments_user']);
+                    echo "<br><hr>";
 
-                    $data['activo'] = "gastronomia";
-                    $data['js_to_load'] = 'gastronomy/singleGastronomy.js';
+                    $data['activo'] = "monumentos";
+//                $data['js_to_load'] = 'monuments/singleMonument.js';
                     $this->load->view('header', $data);
-                    $this->load->view('gastronomy/singleGastronomy', $data);
+                $this->load->view('monuments/singleMonument', $data);
                     $this->load->view('footer', $data);
-
                 }
                 else{
                     $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
                     $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
                     $complete_url = $base_url . $_SERVER["REQUEST_URI"];
-                    redirect($base_url . '/gastronomias');
+                    redirect($base_url . '/monumentos');
                 }
 
             }
@@ -210,7 +213,7 @@ class Gastronomy extends CI_Controller
                 $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
                 $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
                 $complete_url = $base_url . $_SERVER["REQUEST_URI"];
-                redirect($base_url . '/gastronomias');
+                redirect($base_url . '/monumentos');
             }
         }
     }

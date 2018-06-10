@@ -118,6 +118,7 @@ body {
 
 .card-monument{
     margin-top:20px;
+    height: 85% !important;
 }
 
 .card-monument .card-img-block {
@@ -150,6 +151,7 @@ body {
 
 .card-gastronomy{
     margin-top:20px;
+    height: 85% !important;
 }
 
 .card-gastronomy .card-img-block {

@@ -34,7 +34,12 @@
                         <p class="lead">Ingredientes</p>
                         <hr>
                         <div class="lead">
-                            <?php echo $gastronomies->ingredients; ?>
+                            <ul class="">
+                                <?php
+                                foreach ($ingredients as $ingredient)
+                                    echo "<li>$ingredient</li>"
+                                ?>
+                            </ul>
                         </div>
                         <hr>
                     </div>
@@ -43,7 +48,16 @@
                         <p class="lead">Elaboración</p>
                         <hr>
                         <div class="lead">
-                            <?php echo $gastronomies->elaboration; ?>
+                            <?php
+                            $total = count($elaboration);
+                            foreach ($elaboration as $key => $value)
+                            {
+                                if ($key+1 == $total)
+                                    echo "<div class='lead'>$value</div>";
+                                else
+                                    echo "<div class='lead'>$value</div><br/>";
+                            }
+                            ?>
                         </div>
                         <hr>
                     </div>

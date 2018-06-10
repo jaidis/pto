@@ -78,6 +78,17 @@ $route['gastronomia/(:any)'] = 'gastronomy/gastronomies';
 $route['gastronomia/(:num)/(:any)'] = 'gastronomy/singleGastronomy/$1/$2';
 $route['gastronomia/(:any)/(:any)'] = 'gastronomy/gastronomies';
 
+$route['monumentos'] = 'monuments/monuments';
+$route['monumentos/(:num)'] = 'monuments/monuments/$1';
+$route['monumentos/(:any)'] = 'monuments/monumentsProvinces/$1';
+$route['monumentos/(:any)/(:num)'] = 'monuments/monumentsProvinces/$1/$2';
+$route['monumentos/(:any)/(:any)'] = 'monuments/monuments';
+
+$route['monumento'] = 'portal';
+$route['monumento/(:any)'] = 'monuments/monuments';
+$route['monumento/(:num)/(:any)'] = 'monuments/singleMonument/$1/$2';
+$route['monumento/(:any)/(:any)'] = 'monuments/monuments';
+
 $route['noticias'] = 'news/news';
 $route['noticias/(:num)'] = 'news/news/$1';
 $route['noticias/(:any)'] = 'news/newsProvinces/$1';

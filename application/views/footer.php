@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p class="p-0 m-0"><a href="/" class="text-white"><i class="fa fa-home fa-fw mr-1 icon-left"></i>Inicio</a></p>
             <p class="p-0 m-0"><a href="/provincias" class="text-white"><i class="fa fa-globe fa-fw mr-1 icon-left"></i>Provincias</a></p>
             <p class="p-0 m-0"><a href="/monumentos" class="text-white"><i class="fa fa-map-signs fa-fw mr-1 icon-left"></i>Monumentos</a></p>
-            <p class="p-0 m-0"><a href="/contacto" class="text-white"><i class="fa fa-cutlery fa-fw mr-1 icon-left"></i>Gastronomía</a></p>
+            <p class="p-0 m-0"><a href="/gastronomias" class="text-white"><i class="fa fa-cutlery fa-fw mr-1 icon-left"></i>Gastronomía</a></p>
             <p class="p-0 m-0"><a href="/noticias" class="text-white"><i class="fa fa-newspaper-o fa-fw mr-1 icon-left"></i>Noticias</a></p>
             <p class="p-0 m-0"><a href="/contacto" class="text-white"><i class="fa fa-info fa-fw mr-1 icon-left"></i>Contacto</a></p>
         </div>

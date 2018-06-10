@@ -5,7 +5,7 @@ class News extends CI_Controller
 {
 
     /**
-     * Portal constructor.
+     * News constructor.
      */
     public function __construct()
     {
@@ -65,7 +65,7 @@ class News extends CI_Controller
 
         $data['activo'] = "noticias";
         $this->load->view('header', $data);
-        $this->load->view('portal/news', $data);
+        $this->load->view('news/news', $data);
         $this->load->view('footer', $data);
     }
 
@@ -117,7 +117,7 @@ class News extends CI_Controller
 
             $data['activo'] = "noticias";
             $this->load->view('header', $data);
-            $this->load->view('portal/news', $data);
+            $this->load->view('news/news', $data);
             $this->load->view('footer', $data);
         }
         else{
@@ -172,24 +172,35 @@ class News extends CI_Controller
 
             if (!empty($id_news)){
 
-                if ($this->aauth->is_loggedin()) {
-                    $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+                $data['news'] = $this->news->getNews($id_news);
+
+                if(count($data['news']) > 0){
+
+                    if ($this->aauth->is_loggedin()) {
+                        $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email = false));
+                    }
+
+                    $data['news'] = $data['news'][0];
+                    $data['comments'] = $this->news->getCommentsNews($id_news);
+
+                    $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
+
+                    $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
+                    $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
+
+                    $data['activo'] = "noticias";
+                    $data['js_to_load'] = 'news/singleNews.js';
+                    $this->load->view('header', $data);
+                    $this->load->view('news/singleNews', $data);
+                    $this->load->view('footer', $data);
+                }
+                else{
+                    $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+                    $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+                    $complete_url = $base_url . $_SERVER["REQUEST_URI"];
+                    redirect($base_url . '/noticias');
                 }
 
-                $data['news'] = $this->news->getNews($id_news);
-                $data['news'] = $data['news'][0];
-                $data['comments'] = $this->news->getCommentsNews($id_news);
-
-                $data['news_user'] = $this->aauth->get_user($data['news']->id_admin);
-
-                $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
-                $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
-
-                $data['activo'] = "noticias";
-                $data['js_to_load'] = 'portal/singleNews.js';
-                $this->load->view('header', $data);
-                $this->load->view('portal/singleNews', $data);
-                $this->load->view('footer', $data);
             }
             else{
                 $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
