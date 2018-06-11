@@ -70,7 +70,7 @@ class Monuments extends CI_Controller
     }
 
     /**
-     * Call the view for render all gastronomies from a Province
+     * Call the view for render all monuments from a Province
      */
     public function monumentsProvinces($map_code = null, $page=0)
     {
@@ -131,9 +131,10 @@ class Monuments extends CI_Controller
     }
 
     /**
-     * Call the view for render a single gastronomy
+     * Call the view for render a single monument
+     * TODO IMAGENES ASOCIADAS AL MONUMENTO
      */
-    public function singleMonument($id_monument = false, $title_gastronomy = false)
+    public function singleMonument($id_monument = false, $title_monument = false)
     {
         if ($this->input->post()) {
 
@@ -143,12 +144,12 @@ class Monuments extends CI_Controller
                 if (count($data['user'])>0 && $data['user']->username == $this->input->post('activeUser')){
                     $result = $this->monuments->setNewComment(array(
                         "id_user"=>$this->input->post('activeId'),
-                        "id_gastronomies"=>$this->input->post('gastronomiesId'),
+                        "id_monuments"=>$this->input->post('monumentsId'),
                         "message"=>$this->input->post('message')
                     ));
                     $this->monuments->setNewLog(array(
                         "event_name" => "Nuevo comentario",
-                        "event_description" => "Comentario ID '".$result."', Gastronomia ID'".$this->input->post('gastronomiesId')."', Usuario ID'".$this->input->post('activeId')."'",
+                        "event_description" => "Comentario ID '".$result."', Monuments ID'".$this->input->post('monumentsId')."', Usuario ID'".$this->input->post('activeId')."'",
                         "event_type" => "info",
                         "event_ip" => $this->utils->get_client_ip()
                     ));
@@ -188,17 +189,12 @@ class Monuments extends CI_Controller
                     $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['monuments']->date_creation))));
                     $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
 
-                    print_r($data['monuments']);
-                    echo "<br><hr>";
-                    print_r($data['comments']);
-                    echo "<br><hr>";
-                    print_r($data['comments_user']);
-                    echo "<br><hr>";
+                    $data['description'] = explode(';',$data['monuments']->description);
 
                     $data['activo'] = "monumentos";
-//                $data['js_to_load'] = 'monuments/singleMonument.js';
+                    $data['js_to_load'] = 'monuments/singleMonument.js';
                     $this->load->view('header', $data);
-                $this->load->view('monuments/singleMonument', $data);
+                    $this->load->view('monuments/singleMonument', $data);
                     $this->load->view('footer', $data);
                 }
                 else{

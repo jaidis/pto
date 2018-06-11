@@ -6,9 +6,9 @@
  * Time: 17:54
  */
 ?>
-<div class="container-fluid p-0">
+<div class="container p-0">
     <div class="row bg-main m-0 p-0">
-        <div class="offset-1 col-10 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8 my-5 bg-white rounded">
+        <div class="offset-1 col-10 p-0 my-5 bg-white rounded">
             <!-- Post Content Column -->
             <div class="jumbotron jumbotron-description">
                 <!-- Title -->

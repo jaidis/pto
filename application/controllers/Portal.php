@@ -24,6 +24,9 @@ class Portal extends CI_Controller
 
     /**
      * Init the main view at the website
+     * TODO CREAR FUNCION PARA EL USUARIO
+     * TODO EN CASO QUE EL USUARIO SEA EL MISMO SE PODRÁ EDITAR SUS PROPIOS DATOS
+     * TODO EN CASO QUE SEA UN INVITADO SE OFRECE ALGUN TIPO DE RESUMEN SOBRE EL USUARIO
      */
     public function index()
     {
@@ -155,7 +158,6 @@ class Portal extends CI_Controller
             $this->load->view('header', $data);
             $this->load->view('portal/contact', $data);
             $this->load->view('footer', $data);
-
 
         }
     }
