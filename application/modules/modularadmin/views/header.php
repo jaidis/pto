@@ -1,3 +1,6 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -79,11 +82,11 @@
                                 <li>
                                     <a href="/pto-admin/provincias"> Listado </a>
                                 </li>
-<!--                                --><?php //if(!empty($añadir) && $añadir == 1): ?>
+                                <?php if(!empty($añadir) && $añadir == 1): ?>
                                     <li>
                                         <a href="/pto-admin/provincias/new"> Nueva provincia </a>
                                     </li>
-<!--                                --><?php //endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="<?php echo (!empty($active) && $active == "monumentos") ? 'active open' : '' ?>">
@@ -95,11 +98,11 @@
                                 <li>
                                     <a href="/pto-admin/monumentos"> Listado </a>
                                 </li>
-<!--                                --><?php //if(!empty($añadir) && $añadir == 1): ?>
+                                <?php if(!empty($añadir) && $añadir == 1): ?>
                                     <li>
                                         <a href="/pto-admin/monumentos/new"> Nuevo monumento </a>
                                     </li>
-<!--                                --><?php //endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="<?php echo (!empty($active) && $active == "gastronomia") ? 'active open' : '' ?>">
@@ -111,11 +114,11 @@
                                 <li>
                                     <a href="/pto-admin/gastronomia"> Listado </a>
                                 </li>
-<!--                                --><?php //if(!empty($añadir) && $añadir == 1): ?>
+                                <?php if(!empty($añadir) && $añadir == 1): ?>
                                     <li>
                                         <a href="/pto-admin/gastronomia/new"> Nueva gastronomía </a>
                                     </li>
-<!--                                --><?php //endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="<?php echo (!empty($active) && $active == "noticias") ? 'active open' : '' ?>">
@@ -127,11 +130,11 @@
                                 <li>
                                     <a href="/pto-admin/noticias"> Listado </a>
                                 </li>
-<!--                                --><?php //if(!empty($añadir) && $añadir == 1): ?>
+                                <?php if(!empty($añadir) && $añadir == 1): ?>
                                     <li>
                                         <a href="/pto-admin/noticias/new"> Nueva Noticia </a>
                                     </li>
-<!--                                --><?php //endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </li>
                         <li class="<?php echo (!empty($active) && $active == "usuarios") ? 'active open' : '' ?>">
@@ -145,7 +148,7 @@
                                 </li>
                             </ul>
                         </li>
-<!--                        --><?php //if(!empty($admin) && $admin == 1): ?>
+                        <?php if(!empty($admin) && $admin == 1): ?>
                             <li class="<?php echo (!empty($active) && $active == "configuacion") ? 'active open' : '' ?>">
                                 <a href="">
                                     <i class="fa fa-gear"></i> Configuración
@@ -157,7 +160,7 @@
                                     </li>
                                 </ul>
                             </li>
-<!--                        --><?php //endif; ?>
+                        <?php endif; ?>
                     </ul>
                 </nav>
             </div>

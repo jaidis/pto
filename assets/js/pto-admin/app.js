@@ -1334,10 +1334,10 @@ $(function () {
 	function setThemeState() {
 		// set theme type
 		if (themeSettings.themeName) {
-			$styleLink.attr('href', './assets/css/pto-admin/app-' + themeSettings.themeName + '.css');
+			$styleLink.attr('href', '/assets/css/pto-admin/app-' + themeSettings.themeName + '.css');
 		}
 		else {
-			$styleLink.attr('href', './assets/css/pto-admin/app.css');
+			$styleLink.attr('href', '/assets/css/pto-admin/app.css');
 		}
 
 		// App classes

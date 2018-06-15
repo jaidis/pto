@@ -1,8 +1,11 @@
-     <footer class="footer">
-            <div class="footer-block buttons">
-                <p class="m-0 p-0">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-            </div>
-        </footer>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+<footer class="footer">
+    <div class="footer-block buttons">
+        <p class="m-0 p-0">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+    </div>
+</footer>
         <div class="modal fade" id="modal-media">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends MX_Controller {
+class Provincias extends MX_Controller {
 
 
     /*******************************************************************
@@ -10,7 +10,7 @@ class Home extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('HomeModel','home');
+        $this->load->model('ProvinciasModel','provincias');
         $this->load->library("Aauth");
         $this->load->library("Utils");
         $this->load->helper('url');
@@ -31,13 +31,13 @@ class Home extends MX_Controller {
 
             if (!empty($data['ver']) && $data['ver'] == 1){
 
-                $data['news'] = $this->home->getNewsPortal();
+                $data['provincias'] = $this->provincias->getAllProvinces();
 
                 // Selecciona la vista actual
-                $data['active'] = "home";
+                $data['active'] = "provincias";
                 $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
                 $this->load->view('header',$data);
-                $this->load->view('home/index',$data);
+                $this->load->view('provincias/index',$data);
                 $this->load->view('footer',$data);
 
             }

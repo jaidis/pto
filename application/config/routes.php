@@ -123,3 +123,8 @@ $route['contacto'] = 'portal/contact';
 // RUTAS PARA ADMINISTRACION - INDEX
 // ******************************************************************
 $route['pto-admin'] = 'modularadmin/home/index';
+
+// ******************************************************************
+// RUTAS PARA ADMINISTRACION - PROVINCIAS
+// ******************************************************************
+$route['pto-admin/provincias'] = 'modularadmin/provincias/index';
