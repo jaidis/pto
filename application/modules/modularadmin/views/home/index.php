@@ -75,9 +75,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <p><?php
             foreach ($news as $new)
             {
-                echo '<pre>';
+                echo '<code>';
                 print_r($new);
-                echo '</pre>';
+                echo '</code>';
             }
             ?></p>
 

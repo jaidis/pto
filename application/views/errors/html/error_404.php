@@ -10,8 +10,8 @@ $heading = $var[0];
     <title>Bootswatch: Flatly</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/assets/css/vendor.css">
-    <link rel="stylesheet" href="/assets/css/app-purple.css">
+    <link rel="stylesheet" href="/assets/css/pto-admin/vendor.css">
+    <link rel="stylesheet" href="/assets/css/pto-admin/app-purple.css">
 </head>
 <body>
 <div class="app blank sidebar-opened">
@@ -29,7 +29,7 @@ $heading = $var[0];
         </div>
     </article>
 </div>
-<script src="/assets/js/vendor.js"></script>
-<script src="/assets/js/app.js"></script>
+<script src="/assets/js/pto-admin/vendor.js"></script>
+<script src="/assets/js/pto-admin/app.js"></script>
 </body>
 </html>

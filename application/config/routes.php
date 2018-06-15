@@ -53,9 +53,11 @@ $route['default_controller'] = 'portal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['welcomes'] = 'modularadmin/welcomes/index';
 $route['template'] = 'welcome/template';
 
+// ******************************************************************
+// RUTAS PARA LOGIN, REGISTRO Y RECUPERACION
+// ******************************************************************
 $route['login'] = 'authentication/login';
 $route['registro'] = 'authentication/register';
 $route['recuperar'] = 'authentication/recover';
@@ -63,10 +65,16 @@ $route['password'] = 'authentication/login';
 $route['password/(:any)'] = 'authentication/recoverPassword';
 $route['logout'] = 'authentication/logout';
 
+// ******************************************************************
+// RUTAS PARA PROVINCIAS
+// ******************************************************************
 $route['provincias'] = 'portal/provinces';
 $route['provincia'] = 'portal/province';
 $route['provincia/(:any)'] = 'portal/province/$1';
 
+// ******************************************************************
+// RUTAS PARA GASTRONOMIAS
+// ******************************************************************
 $route['gastronomias'] = 'gastronomy/gastronomies';
 $route['gastronomias/(:num)'] = 'gastronomy/gastronomies/$1';
 $route['gastronomias/(:any)'] = 'gastronomy/gastronomiesProvinces/$1';
@@ -78,6 +86,9 @@ $route['gastronomia/(:any)'] = 'gastronomy/gastronomies';
 $route['gastronomia/(:num)/(:any)'] = 'gastronomy/singleGastronomy/$1/$2';
 $route['gastronomia/(:any)/(:any)'] = 'gastronomy/gastronomies';
 
+// ******************************************************************
+// RUTAS PARA MONUMENTOS
+// ******************************************************************
 $route['monumentos'] = 'monuments/monuments';
 $route['monumentos/(:num)'] = 'monuments/monuments/$1';
 $route['monumentos/(:any)'] = 'monuments/monumentsProvinces/$1';
@@ -89,6 +100,9 @@ $route['monumento/(:any)'] = 'monuments/monuments';
 $route['monumento/(:num)/(:any)'] = 'monuments/singleMonument/$1/$2';
 $route['monumento/(:any)/(:any)'] = 'monuments/monuments';
 
+// ******************************************************************
+// RUTAS PARA NOTICIAS
+// ******************************************************************
 $route['noticias'] = 'news/news';
 $route['noticias/(:num)'] = 'news/news/$1';
 $route['noticias/(:any)'] = 'news/newsProvinces/$1';
@@ -100,4 +114,12 @@ $route['noticia/(:any)'] = 'news/news';
 $route['noticia/(:num)/(:any)'] = 'news/singleNews/$1/$2';
 $route['noticia/(:any)/(:any)'] = 'news/news';
 
+// ******************************************************************
+// RUTAS PARA CONTACTO
+// ******************************************************************
 $route['contacto'] = 'portal/contact';
+
+// ******************************************************************
+// RUTAS PARA ADMINISTRACION - INDEX
+// ******************************************************************
+$route['pto-admin'] = 'modularadmin/home/index';

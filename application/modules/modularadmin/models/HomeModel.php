@@ -7,7 +7,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class WelcomesModel extends CI_Model
+class Homemodel extends CI_Model
 {
 
     public function __construct()

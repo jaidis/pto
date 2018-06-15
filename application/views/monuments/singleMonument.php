@@ -93,7 +93,7 @@
                         <img class="d-flex mr-3 rounded-circle" src="/assets/img/users/logo.png" alt="Portal Turismo y Ocio" width="70px">
                         <div class="media-body">
                             <h5 class="mt-0">Portal Turismo y Ocio</h5>
-                            Hola, en estos momentos nadie ha escrito un comentario, por favor, escribe uno y dinos que te ha parecido esta receta.
+                            Hola, en estos momentos nadie ha escrito un comentario, por favor, escribe uno y dinos que te ha parecido este monumento.
                         </div>
                     </div>
                 <?php endif; ?>
