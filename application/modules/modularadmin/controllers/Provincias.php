@@ -185,6 +185,7 @@ class Provincias extends MX_Controller {
      * PÁGINA PARA UNA NUEVA PROVINCIA
      * FORMULARIO PARA INSERTAR UNA PROVINCIA
      * $route['pto-admin/provincias/new'] = 'modularadmin/provincias/newProvince';
+     * @param int $id_province Id de la provincia
      ******************************************************************/
 
     public function editProvince($id_province = null)

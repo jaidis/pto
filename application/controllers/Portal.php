@@ -93,6 +93,8 @@ class Portal extends CI_Controller
                 $news->fecha = $news->fecha[1].' de '.$news->fecha[0]. ' del '.$news->fecha[3].' a las '.$news->fecha[4];
             }
 
+            $data['description'] = explode(';',$data['province']->description);
+
             //Generate view for the province template
             $data['activo'] = "provincias";
             $data['css_to_load'] = 'portal/province.css';

@@ -134,3 +134,8 @@ $route['pto-admin/provincias/edit/(:num)'] = 'modularadmin/provincias/editProvin
 $route['pto-admin/provincias/edit/(:any)'] = 'modularadmin/provincias/index';
 
 $route['pto-admin/provincias/upload_file'] = 'modularadmin/provincias/uploadImage';
+
+// ******************************************************************
+// RUTAS PARA ADMINISTRACION - CONFIGURACIÓN
+// ******************************************************************
+$route['pto-admin/permisos'] = 'modularadmin/home/permisos';

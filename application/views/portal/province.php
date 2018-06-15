@@ -20,7 +20,16 @@
         <div class="offset-1 col-10 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8">
             <div class="jumbotron jumbotron-description">
                 <p class="lead text-primary my-0">
-                    <?php echo $province->description ?>
+                    <?php
+                    $total = count($description);
+                    foreach ($description as $key => $value)
+                    {
+                        if ($key+1 == $total)
+                            echo "<div class='lead'>$value</div>";
+                        else
+                            echo "<div class='lead'>$value</div><br/>";
+                    }
+                    ?>
                 </p>
             </div>
         </div>

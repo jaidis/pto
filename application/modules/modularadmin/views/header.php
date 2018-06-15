@@ -138,19 +138,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php endif; ?>
                             </ul>
                         </li>
-                        <li class="<?php echo (!empty($active) && $active == "usuarios") ? 'active open' : '' ?>">
-                            <a href="">
-                                <i class="fa fa-users"></i> Usuarios
-                                <i class="fa arrow"></i>
-                            </a>
-                            <ul class="sidebar-nav">
-                                <li>
-                                    <a href="/pto-admin/usuarios"> Listado </a>
-                                </li>
-                            </ul>
-                        </li>
                         <?php if(!empty($admin) && $admin == 1): ?>
-                            <li class="<?php echo (!empty($active) && $active == "configuacion") ? 'active open' : '' ?>">
+                            <li class="<?php echo (!empty($active) && $active == "configuracion") ? 'active open' : '' ?>">
                                 <a href="">
                                     <i class="fa fa-gear"></i> Configuración
                                     <i class="fa arrow"></i>

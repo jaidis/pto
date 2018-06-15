@@ -16,8 +16,4 @@ class Homemodel extends CI_Model
         $this->load->database();
     }
 
-    public function getNewsPortal(){
-        $this->db->order_by('date_creation','desc');
-        return $this->db->get('news')->result();
-    }
 }

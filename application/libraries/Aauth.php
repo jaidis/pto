@@ -706,7 +706,7 @@ class Aauth {
      * @param string $last_name User's username
 	 * @return int|bool False if create fails or returns user id if successful
 	 */
-	public function create_user($email, $pass, $username = FALSE, $first_name = FALSE, $last_name = FALSE) {
+	public function create_user($email, $pass, $username = FALSE, $first_name = FALSE, $last_name = FALSE, $image = FALSE) {
 
 		$valid = TRUE;
 
@@ -748,6 +748,7 @@ class Aauth {
             'username' => (!$username) ? '' : $username,
             'first_name' => (!$first_name) ? '' : $first_name,
             'last_name' => (!$last_name) ? '' : $last_name,
+            'image_url' => (!$image) ? '' : $image,
 			'date_created' => date("Y-m-d H:i:s"),
 		);
 
