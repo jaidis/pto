@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </script>
     <link rel="stylesheet" href="/assets/css/toastr.css">
     <link rel="stylesheet" href="/assets/css/pto-admin/dataTables.css">
+    <link rel="stylesheet" href="/assets/css/pto-admin/main.css">
     <?php
     if (!empty($css_to_load))
         echo "<link rel=\"stylesheet\" href=\"/assets/css/pto-admin/$css_to_load\">";

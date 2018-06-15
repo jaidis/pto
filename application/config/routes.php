@@ -128,3 +128,9 @@ $route['pto-admin'] = 'modularadmin/home/index';
 // RUTAS PARA ADMINISTRACION - PROVINCIAS
 // ******************************************************************
 $route['pto-admin/provincias'] = 'modularadmin/provincias/index';
+$route['pto-admin/provincias/new'] = 'modularadmin/provincias/newProvince';
+$route['pto-admin/provincias/edit'] = 'modularadmin/provincias/editProvince';
+$route['pto-admin/provincias/edit/(:num)'] = 'modularadmin/provincias/editProvince/$1';
+$route['pto-admin/provincias/edit/(:any)'] = 'modularadmin/provincias/index';
+
+$route['pto-admin/provincias/upload_file'] = 'modularadmin/provincias/uploadImage';

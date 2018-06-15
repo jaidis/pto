@@ -1,0 +1,43 @@
+/******************************************************************************
+*
+* Estilo para el formulario de subir una imagen
+*
+******************************************************************************/
+.files-image {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+    background-color:#f0f3f6;
+}
+
+.files-image:focus{
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    border:1px solid #92b0b3;
+}
+
+.files-image:after {
+    pointer-events: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    /* background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png); */
+    /* background-size: 100%; */
+    /* background-repeat: no-repeat; */
+    font-family: 'FontAwesome';
+    content: "\f019";
+    font-size: 3em;
+    display: block;
+    margin: 0 auto;
+}
