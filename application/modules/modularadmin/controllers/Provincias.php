@@ -20,7 +20,7 @@ class Provincias extends MX_Controller {
     /*******************************************************************
      * PÁGINA DE INICIO PARA LAS PROVINCIAS
      * FORMULARIO PARA BORRAR UNA PROVINCIA
-     * $route['pto-admin'] = 'modularadmin/home/index';
+     * $route['pto-admin/provincias'] = 'modularadmin/provincias/index';
      ******************************************************************/
 
     public function index()
@@ -36,6 +36,14 @@ class Provincias extends MX_Controller {
                 $response['response'] = 'success';
                 $response['message'] = "¡ Se ha borrado la provincia !";
                 $response['province'] = $this->input->post('idProvince');
+
+                $this->provincias->setNewLog(array(
+                    "event_name"=>'Provincia Borrada',
+                    "event_description"=>"Se ha borrado la provincia con el ID '".$this->input->post('idProvince')."'",
+                    "event_type"=>"info",
+                    "event_ip"=> $this->utils->get_client_ip()
+                ));
+
             }
             else{
 
@@ -128,7 +136,14 @@ class Provincias extends MX_Controller {
                 else
                     $provincias['active'] = 0;
 
-                $this->provincias->setNewProvince($provincias);
+                $result = $this->provincias->setNewProvince($provincias);
+
+                $this->provincias->setNewLog(array(
+                    "event_name"=>'Provincia Añadida',
+                    "event_description"=>"Se ha añadido la provincia con el ID '".$result."'",
+                    "event_type"=>"info",
+                    "event_ip"=> $this->utils->get_client_ip()
+                ));
 
                 $response['response'] = 'success';
                 $response['data'] = $provincias;
@@ -182,9 +197,10 @@ class Provincias extends MX_Controller {
     }
 
     /*******************************************************************
-     * PÁGINA PARA UNA NUEVA PROVINCIA
-     * FORMULARIO PARA INSERTAR UNA PROVINCIA
-     * $route['pto-admin/provincias/new'] = 'modularadmin/provincias/newProvince';
+     * PÁGINA PARA EDITAR UNA PROVINCIA
+     * FORMULARIO PARA EDITAR UNA PROVINCIA
+     * $route['pto-admin/provincias/edit'] = 'modularadmin/provincias/editProvince';
+     * $route['pto-admin/provincias/edit/(:num)'] = 'modularadmin/provincias/editProvince/$1';
      * @param int $id_province Id de la provincia
      ******************************************************************/
 
@@ -226,13 +242,20 @@ class Provincias extends MX_Controller {
 
                 $this->provincias->setUpdateProvince($id_province, $provincias);
 
+                $this->provincias->setNewLog(array(
+                    "event_name"=>'Provincia Editada',
+                    "event_description"=>"Se ha editado la provincia con el ID '".$id_province."'",
+                    "event_type"=>"info",
+                    "event_ip"=> $this->utils->get_client_ip()
+                ));
+
                 $response['response'] = 'success';
                 $response['data'] = $provincias;
                 $response['message'] = "¡ Se ha editado la provincia !";
 
             }catch (\Exception $e) {
 
-                $this->email->setNewLog(array(
+                $this->provincias->setNewLog(array(
                     "event_name"=>$e->getMessage(),
                     "event_description"=>" Line: ".$e->getLine()." File: ".$e->getFile(),
                     "event_type"=>"error",
@@ -301,7 +324,7 @@ class Provincias extends MX_Controller {
 
     //******************************************************************
     //	UPLOAD IMAGE
-    //	$route['campaigns/upload_file'] = 'campaigns/uploadImage';
+    //	$route['pto-admin/provincias/upload_file'] = 'modularadmin/provincias/uploadImage';
     //******************************************************************
 
     public function uploadImage(){
