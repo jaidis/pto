@@ -106,18 +106,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php endif; ?>
                             </ul>
                         </li>
-                        <li class="<?php echo (!empty($active) && $active == "gastronomia") ? 'active open' : '' ?>">
+                        <li class="<?php echo (!empty($active) && $active == "gastronomias") ? 'active open' : '' ?>">
                             <a href="">
                                 <i class="fa fa-cutlery"></i> Gastronomía
                                 <i class="fa arrow"></i>
                             </a>
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="/pto-admin/gastronomia"> Listado </a>
+                                    <a href="/pto-admin/gastronomias"> Listado </a>
                                 </li>
                                 <?php if(!empty($añadir) && $añadir == 1): ?>
                                     <li>
-                                        <a href="/pto-admin/gastronomia/new"> Nueva gastronomía </a>
+                                        <a href="/pto-admin/gastronomias/new"> Nueva gastronomía </a>
                                     </li>
                                 <?php endif; ?>
                             </ul>

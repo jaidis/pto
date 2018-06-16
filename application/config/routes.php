@@ -147,6 +147,17 @@ $route['pto-admin/monumentos/edit/(:any)'] = 'modularadmin/monumentos/index';
 $route['pto-admin/monumentos/upload_file'] = 'modularadmin/monumentos/uploadImage';
 
 // ******************************************************************
+// RUTAS PARA ADMINISTRACION - GASTRONOMIA
+// ******************************************************************
+$route['pto-admin/gastronomias'] = 'modularadmin/gastronomias/index';
+$route['pto-admin/gastronomias/new'] = 'modularadmin/gastronomias/newGastronomy';
+$route['pto-admin/gastronomias/edit'] = 'modularadmin/gastronomias/editGastronomy';
+$route['pto-admin/gastronomias/edit/(:num)'] = 'modularadmin/gastronomias/editGastronomy/$1';
+$route['pto-admin/gastronomias/edit/(:any)'] = 'modularadmin/gastronomias/index';
+
+$route['pto-admin/gastronomias/upload_file'] = 'modularadmin/gastronomias/uploadImage';
+
+// ******************************************************************
 // RUTAS PARA ADMINISTRACION - CONFIGURACIÓN
 // ******************************************************************
 $route['pto-admin/permisos'] = 'modularadmin/home/permisos';
