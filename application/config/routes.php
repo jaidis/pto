@@ -136,6 +136,17 @@ $route['pto-admin/provincias/edit/(:any)'] = 'modularadmin/provincias/index';
 $route['pto-admin/provincias/upload_file'] = 'modularadmin/provincias/uploadImage';
 
 // ******************************************************************
+// RUTAS PARA ADMINISTRACION - MONUMENTOS
+// ******************************************************************
+$route['pto-admin/monumentos'] = 'modularadmin/monumentos/index';
+$route['pto-admin/monumentos/new'] = 'modularadmin/monumentos/newMonument';
+$route['pto-admin/monumentos/edit'] = 'modularadmin/monumentos/editMonument';
+$route['pto-admin/monumentos/edit/(:num)'] = 'modularadmin/monumentos/editMonument/$1';
+$route['pto-admin/monumentos/edit/(:any)'] = 'modularadmin/monumentos/index';
+
+$route['pto-admin/monumentos/upload_file'] = 'modularadmin/monumentos/uploadImage';
+
+// ******************************************************************
 // RUTAS PARA ADMINISTRACION - CONFIGURACIÓN
 // ******************************************************************
 $route['pto-admin/permisos'] = 'modularadmin/home/permisos';

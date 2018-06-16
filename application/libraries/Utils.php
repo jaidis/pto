@@ -252,6 +252,17 @@ class Utils {
       return $cadena;
   }
 
+    public function eliminar_caracteres($cadena){
+
+        $cadena = str_replace(
+            array(',', '.', '-', '!', '¡', '?', '¿', ';', ':', '_', '<', '>'),
+            array('', '', '', '', '', '', '', '', '', '', '', ''),
+            $cadena
+        );
+
+        return $cadena;
+    }
+
   public function previewImageBase64($rutaOrigen, $archivoOrigen){
     $ruta = $rutaOrigen.$archivoOrigen;
     $type = pathinfo($ruta, PATHINFO_EXTENSION);

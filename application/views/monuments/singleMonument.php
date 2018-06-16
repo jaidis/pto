@@ -40,7 +40,7 @@
                             <?php if (!empty($monuments->web)):?>
                             <span class="">Web oficial</span>
                             <ul class="mt-2" style="list-style: none;">
-                                <li><a href="http://<?php echo $monuments->web; ?>"><button class="btn btn-primary">Ir al sitio web</button></a></li>
+                                <li><a href="<?php echo $monuments->web; ?>"><button class="btn btn-primary">Ir al sitio web</button></a></li>
                             </ul>
                             <?php endif; ?>
                         </div>

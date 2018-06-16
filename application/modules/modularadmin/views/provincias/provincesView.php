@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" class="form-control underlined" name="inputMapCode" value="<?php echo $provincia->map_code ?>" readonly>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="inputMapCode">Fecha registro</label>
+                                        <label for="inputDate">Fecha registro</label>
                                         <input type="text" class="form-control underlined" name="inputDate" value="<?php echo $provincia->date_creation ?>" readonly>
                                     </div>
                                     <div class="form-group col-md-8" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <textarea rows="11" class="form-control underlined" name="inputDescription" maxlength="5000" placeholder="Escribe aquí la descripción" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>><?php echo $provincia->description ?></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputProvince">Imagen provincia</label>
+                                        <label for="imgPreview">Imagen provincia</label>
                                         <img src="/assets/img/province/<?php echo (!empty($provincia->image_url)) ? $provincia->image_url : 'not-found-1920-1080.jpg' ?>" alt="" class="img-fluid" id="imgPreview">
                                     </div>
                                 </div>
