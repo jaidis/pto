@@ -9,31 +9,33 @@
 <div class="container p-0">
     <div class="row bg-main m-0 p-0">
         <div class="offset-1 col-10 p-0 my-5 bg-white rounded">
-            <!-- Post Content Column -->
             <div class="jumbotron jumbotron-description">
-                <!-- Title -->
                 <h2 class="mt-4 title-news"><?php echo $news->title; ?></h2>
-                <!-- Author -->
                 <p class="lead"> Redactado por
                     <span class="text-success">
                         <?php echo $news_user->first_name .' '.$news_user->last_name .' - '. $news_user->username ?>
                     </span>
                 </p>
                 <hr>
-                <!-- Date/Time -->
                 <p>Publicado el <?php echo $fecha; ?></p>
                 <hr>
-                <!-- Preview Image -->
                 <span class="text-center">
                     <img class="mx-auto d-block img-fluid rounded" src="/assets/img/news/<?php echo ($news->image_url != null) ? $news->image_url : 'not-found-1920-1080.jpg'; ?>" alt="">
                 </span>
                 <hr>
-                <!-- Post Content -->
                 <div class="lead">
-                    <?php echo $news->description; ?>
+                    <?php
+                    $total = count($description);
+                    foreach ($description as $key => $value)
+                    {
+                        if ($key+1 == $total)
+                            echo "<div class='lead'>$value</div>";
+                        else
+                            echo "<div class='lead'>$value</div><br/>";
+                    }
+                    ?>
                 </div>
                 <hr>
-                <!-- Comments Form -->
                 <div class="card border-primary my-4">
                     <h5 class="card-header bg-primary text-white">Deja un comentario</h5>
                     <div class="card-body">
@@ -48,8 +50,6 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- Single Comment -->
                 <?php if (!empty($comments)): ?>
                 <?php foreach ($comments as $comment):?>
                 <div class="media mb-4">

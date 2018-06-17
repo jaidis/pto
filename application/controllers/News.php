@@ -188,6 +188,8 @@ class News extends CI_Controller
                     $data['fecha'] = (explode("-",strftime("%B-%d-%m-%Y-%R", strtotime($data['news']->date_creation))));
                     $data['fecha'] = $data['fecha'][1].' de '.$data['fecha'][0]. ' del '.$data['fecha'][3].' a las '.$data['fecha'][4];
 
+                    $data['description'] = explode(';',$data['news']->description);
+
                     $data['activo'] = "noticias";
                     $data['js_to_load'] = 'news/singleNews.js';
                     $this->load->view('header', $data);
