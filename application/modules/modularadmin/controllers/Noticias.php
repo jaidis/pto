@@ -313,6 +313,8 @@ class Noticias extends MX_Controller {
 
                         $data['provincias'] = $this->noticias->getAllProvinces();
 
+                        $data['comentarios'] = $this->noticias->getNewsComments($id_news);
+
                         // Selecciona la vista actual
                         $data['active'] = "noticias";
                         $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
@@ -392,4 +394,39 @@ class Noticias extends MX_Controller {
 
         echo json_encode($response);
     }
+
+    //******************************************************************
+    //	DELETE COMMENT
+    //	$route['pto-admin/noticias/delete_comment'] = 'modularadmin/noticias/deleteComment';
+    //******************************************************************
+    public function deleteComment(){
+
+        $response = array();
+
+        if (!empty($this->input->post('idComment'))){
+
+            $response['data'] = $this->noticias->setDeleteComment($this->input->post('idComment'));
+
+            $response['response'] = 'success';
+            $response['message'] = "¡Se ha borrado el comentario!";
+            $response['news'] = $this->input->post('idComment');
+
+            $this->noticias->setNewLog(array(
+                "event_name"=>'Comentario Borrado',
+                "event_description"=>"Se ha borrado el comentario de la noticia con el ID '".$this->input->post('idComment')."'",
+                "event_type"=>"info",
+                "event_ip"=> $this->utils->get_client_ip()
+            ));
+
+        }
+        else{
+
+            $response['response'] = 'error';
+            $response['message'] = "¡No se puede borrar el comentario!";
+        }
+
+
+        echo json_encode($response);
+    }
+
 }

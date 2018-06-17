@@ -5,7 +5,7 @@ class Gastronomias extends MX_Controller {
 
 
     /*******************************************************************
-     * Monumentos constructor
+     * Gastronomias constructor
      ******************************************************************/
     public function __construct()
     {
@@ -313,6 +313,8 @@ class Gastronomias extends MX_Controller {
 
                         $data['provincias'] = $this->gastronomias->getAllProvinces();
 
+                        $data['comentarios'] = $this->gastronomias->getGastronomiesComments($id_gastronomy);
+
                         // Selecciona la vista actual
                         $data['active'] = "gastronomias";
                         $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
@@ -392,4 +394,39 @@ class Gastronomias extends MX_Controller {
 
         echo json_encode($response);
     }
+
+    //******************************************************************
+    //	DELETE COMMENT
+    //	$route['pto-admin/gastronomias/delete_comment'] = 'modularadmin/gastronomias/deleteComment';
+    //******************************************************************
+    public function deleteComment(){
+
+        $response = array();
+
+        if (!empty($this->input->post('idComment'))){
+
+            $response['data'] = $this->gastronomias->setDeleteComment($this->input->post('idComment'));
+
+            $response['response'] = 'success';
+            $response['message'] = "¡Se ha borrado el comentario!";
+            $response['news'] = $this->input->post('idComment');
+
+            $this->gastronomias->setNewLog(array(
+                "event_name"=>'Comentario Borrado',
+                "event_description"=>"Se ha borrado el comentario de la gastronomía con el ID '".$this->input->post('idComment')."'",
+                "event_type"=>"info",
+                "event_ip"=> $this->utils->get_client_ip()
+            ));
+
+        }
+        else{
+
+            $response['response'] = 'error';
+            $response['message'] = "¡No se puede borrar el comentario!";
+        }
+
+
+        echo json_encode($response);
+    }
+
 }

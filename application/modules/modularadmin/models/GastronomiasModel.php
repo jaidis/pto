@@ -36,6 +36,11 @@ class Gastronomiasmodel extends CI_Model
         return $this->db->get_where('gastronomies', array('id'=>$id_gastronomy))->result();
     }
 
+    public function getGastronomiesComments($id_gastronomy){
+        $this->db->join('aauth_users', 'aauth_users.id = gastronomies_comments.id_user', 'join');
+        return $this->db->get_where('gastronomies_comments', array('id_gastronomies'=>$id_gastronomy))->result();
+    }
+
     public function setNewGastronomy($array)
     {
         $this->db->insert('gastronomies', $array);
@@ -52,6 +57,13 @@ class Gastronomiasmodel extends CI_Model
     {
         return $this->db->delete('gastronomies', array(
             'id' => $id_gastronomy
+        ));
+    }
+
+    public function setDeleteComment($id_comment)
+    {
+        return $this->db->delete('gastronomies_comments', array(
+            'gc_id' => $id_comment
         ));
     }
 

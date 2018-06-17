@@ -145,6 +145,7 @@ $route['pto-admin/monumentos/edit/(:num)'] = 'modularadmin/monumentos/editMonume
 $route['pto-admin/monumentos/edit/(:any)'] = 'modularadmin/monumentos/index';
 
 $route['pto-admin/monumentos/upload_file'] = 'modularadmin/monumentos/uploadImage';
+$route['pto-admin/monumentos/delete_comment'] = 'modularadmin/monumentos/deleteComment';
 
 // ******************************************************************
 // RUTAS PARA ADMINISTRACION - GASTRONOMIA
@@ -156,6 +157,7 @@ $route['pto-admin/gastronomias/edit/(:num)'] = 'modularadmin/gastronomias/editGa
 $route['pto-admin/gastronomias/edit/(:any)'] = 'modularadmin/gastronomias/index';
 
 $route['pto-admin/gastronomias/upload_file'] = 'modularadmin/gastronomias/uploadImage';
+$route['pto-admin/gastronomias/delete_comment'] = 'modularadmin/gastronomias/deleteComment';
 
 // ******************************************************************
 // RUTAS PARA ADMINISTRACION - NOTICIAS
@@ -167,6 +169,7 @@ $route['pto-admin/noticias/edit/(:num)'] = 'modularadmin/noticias/editNews/$1';
 $route['pto-admin/noticias/edit/(:any)'] = 'modularadmin/noticias/index';
 
 $route['pto-admin/noticias/upload_file'] = 'modularadmin/noticias/uploadImage';
+$route['pto-admin/noticias/delete_comment'] = 'modularadmin/noticias/deleteComment';
 
 // ******************************************************************
 // RUTAS PARA ADMINISTRACION - CONFIGURACIÓN

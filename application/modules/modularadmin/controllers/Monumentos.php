@@ -332,6 +332,8 @@ class Monumentos extends MX_Controller {
 
                         $data['provincias'] = $this->monumentos->getAllProvinces();
 
+                        $data['comentarios'] = $this->monumentos->getMonumentsComments($id_monument);
+
                         // Selecciona la vista actual
                         $data['active'] = "monumentos";
                         $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
@@ -411,4 +413,39 @@ class Monumentos extends MX_Controller {
 
         echo json_encode($response);
     }
+
+    //******************************************************************
+    //	DELETE COMMENT
+    //	$route['pto-admin/monumentos/delete_comment'] = 'modularadmin/monumentos/deleteComment';
+    //******************************************************************
+    public function deleteComment(){
+
+        $response = array();
+
+        if (!empty($this->input->post('idComment'))){
+
+            $response['data'] = $this->monumentos->setDeleteComment($this->input->post('idComment'));
+
+            $response['response'] = 'success';
+            $response['message'] = "¡Se ha borrado el comentario!";
+            $response['news'] = $this->input->post('idComment');
+
+            $this->monumentos->setNewLog(array(
+                "event_name"=>'Comentario Borrado',
+                "event_description"=>"Se ha borrado el comentario del monumento con el ID '".$this->input->post('idComment')."'",
+                "event_type"=>"info",
+                "event_ip"=> $this->utils->get_client_ip()
+            ));
+
+        }
+        else{
+
+            $response['response'] = 'error';
+            $response['message'] = "¡No se puede borrar el comentario!";
+        }
+
+
+        echo json_encode($response);
+    }
+
 }

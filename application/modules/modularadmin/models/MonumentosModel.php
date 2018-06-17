@@ -36,6 +36,11 @@ class Monumentosmodel extends CI_Model
         return $this->db->get_where('monuments', array('id'=>$id_monument))->result();
     }
 
+    public function getMonumentsComments($id_monument){
+        $this->db->join('aauth_users', 'aauth_users.id = monuments_comments.id_user', 'join');
+        return $this->db->get_where('monuments_comments', array('id_monuments'=>$id_monument))->result();
+    }
+
     public function setNewMonument($array)
     {
         $this->db->insert('monuments', $array);
@@ -52,6 +57,13 @@ class Monumentosmodel extends CI_Model
     {
         return $this->db->delete('monuments', array(
             'id' => $id_monument
+        ));
+    }
+
+    public function setDeleteComment($id_comment)
+    {
+        return $this->db->delete('monuments_comments', array(
+            'mc_id' => $id_comment
         ));
     }
 

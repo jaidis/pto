@@ -36,6 +36,11 @@ class Noticiasmodel extends CI_Model
         return $this->db->get_where('news', array('id'=>$id_news))->result();
     }
 
+    public function getNewsComments($id_news){
+        $this->db->join('aauth_users', 'aauth_users.id = news_comments.id_user', 'join');
+        return $this->db->get_where('news_comments', array('id_news'=>$id_news))->result();
+    }
+
     public function setNewNews($array)
     {
         $this->db->insert('news', $array);
@@ -52,6 +57,13 @@ class Noticiasmodel extends CI_Model
     {
         return $this->db->delete('news', array(
             'id' => $id_news
+        ));
+    }
+
+    public function setDeleteComment($id_comment)
+    {
+        return $this->db->delete('news_comments', array(
+            'nc_id' => $id_comment
         ));
     }
 

@@ -123,6 +123,67 @@ if (!empty($gastronomia))
                                 </div>
                             </form>
                         <?php endif;?>
+
+                        <div id="comentario_section">
+                            <?php if(!empty($borrar) && $borrar == 1 && !empty($comentarios)): ?>
+                                <hr class="my-5"/>
+                                <h1 class="title mb-4"> Lista de comentarios </h1>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover text-center" id="tablaComentarios">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Autor</th>
+                                            <th>Mensaje</th>
+                                            <th>Fecha mensaje</th>
+                                            <th>IP cliente</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($comentarios as $comentario):?>
+                                            <tr>
+                                                <td><?php echo $comentario->gc_id ?></td>
+                                                <td><?php echo $comentario->username ?></td>
+                                                <td><?php echo $comentario->message ?></td>
+                                                <td><?php echo $comentario->date_creation ?></td>
+                                                <td><?php echo $comentario->ip_address ?></td>
+                                                <td>
+                                                    <button type="button" class="btn rounded btn-danger btn-block" data-id="<?php echo $comentario->gc_id ?>" data-title="<?php echo $comentario->message ?>" data-toggle="modal" data-target="#deleteComentario" id="deleteComentarioButton"><i class="fa fa-trash ml-1 mr-2"></i>Borrar</button>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<article>
+    <section>
+        <div class="modal fade" id="deleteComentario" tabindex="-1" role="dialog" aria-labelledby="deleteComentario" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteComentarioLabel">Eliminar comentario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro de borrar a <strong id="infoComentario">comentario</strong> de la base de datos? No es posible deshacer este cambio.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn rounded btn-secondary" data-dismiss="modal" id="closeModal">Cerrar</button>
+                        <form role="form" id="formDeleteComentario">
+                            <input type="hidden" name="idComment" value="" id="idComment">
+                            <button type="submit" class="btn rounded btn-danger"><i class="fa fa-trash ml-1 mr-2"></i>Borrar</button>
+                        </form>
                     </div>
                 </div>
             </div>
