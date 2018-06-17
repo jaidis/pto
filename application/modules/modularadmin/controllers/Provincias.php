@@ -108,50 +108,61 @@ class Provincias extends MX_Controller {
 
             $response = array();
 
-            if (count($this->provincias->getProvinceMapCode($this->input->post('inputMapCode')))<1){
+            $province = $this->provincias->getProvinceCode($this->input->post('inputProvincia'));
 
-                $provincias = array();
+            if (count($province)>0){
 
-                if (!empty($this->input->post('inputNombre')))
-                    $provincias['name'] = $this->input->post('inputNombre');
+                if (count($this->provincias->getProvinceMapCode($province[0]->value))<1){
 
-                if (!empty($this->input->post('inputMapCode')))
-                    $provincias['map_code'] = $this->input->post('inputMapCode');
+                    $provincias = array();
 
-                if (!empty($this->input->post('inputDescription')))
-                    $provincias['description'] = $this->input->post('inputDescription');
+                    $provincias['id'] = $province[0]->id;
 
-                if (!empty($this->input->post('valueImage'))){
+                    $provincias['name'] = $province[0]->name;
 
-                    $provincias['image_url'] = $this->input->post('valueImage');
+                    $provincias['map_code'] = $province[0]->value;
 
-                    //La imagen se mueve de la carpeta temporal a su directorio, despues se borran todas las imagenes temporales
-                    @rename ("uploads/".$provincias['image_url'],"assets/img/province/".$provincias['image_url']);
-                    @array_map('unlink', glob("uploads/*"));
+                    if (!empty($this->input->post('inputDescription')))
+                        $provincias['description'] = $this->input->post('inputDescription');
+
+                    if (!empty($this->input->post('valueImage'))){
+
+                        $provincias['image_url'] = $this->input->post('valueImage');
+
+                        //La imagen se mueve de la carpeta temporal a su directorio, despues se borran todas las imagenes temporales
+                        @rename ("uploads/".$provincias['image_url'],"assets/img/province/".$provincias['image_url']);
+                        @array_map('unlink', glob("uploads/*"));
+                    }
+
+                    $provincias['active'] = $this->input->post('active');
+                    if ($provincias['active'] == "on")
+                        $provincias['active'] = 1;
+                    else
+                        $provincias['active'] = 0;
+
+                    $result = $this->provincias->setNewProvince($provincias);
+
+                    $this->provincias->setNewLog(array(
+                        "event_name"=>'Provincia Añadida',
+                        "event_description"=>"Se ha añadido la provincia con el ID '".$result."'",
+                        "event_type"=>"info",
+                        "event_ip"=> $this->utils->get_client_ip()
+                    ));
+
+                    $response['response'] = 'success';
+                    $response['data'] = $provincias;
+                    $response['message'] = "¡ Se ha añadido la provincia !";
+
                 }
-
-                $provincias['active'] = $this->input->post('active');
-                if ($provincias['active'] == "on")
-                    $provincias['active'] = 1;
-                else
-                    $provincias['active'] = 0;
-
-                $result = $this->provincias->setNewProvince($provincias);
-
-                $this->provincias->setNewLog(array(
-                    "event_name"=>'Provincia Añadida',
-                    "event_description"=>"Se ha añadido la provincia con el ID '".$result."'",
-                    "event_type"=>"info",
-                    "event_ip"=> $this->utils->get_client_ip()
-                ));
-
-                $response['response'] = 'success';
-                $response['data'] = $provincias;
-                $response['message'] = "¡ Se ha añadido la provincia !";
+                else{
+                    $response['response'] = 'error';
+                    $response['message'] = "¡ La provincia ya existe !";
+                }
             }
             else{
                 $response['response'] = 'error';
-                $response['message'] = "¡ El código de mapa '".$this->input->post('inputMapCode')."' ya existe !";
+                $response['message'] = "¡ El código no es válido !";
+                $response['province'] = $province;
             }
 
             echo json_encode($response);
@@ -167,6 +178,8 @@ class Provincias extends MX_Controller {
                 list($data['ver'], $data['añadir'], $data['editar'], $data['borrar'], $data['admin']) = $this->utils->permisos($this->aauth);
 
                 if (!empty($data['añadir']) && $data['añadir'] == 1){
+
+                    $data['codes'] = $this->provincias->getAllProvincesCodes();
 
                     // Selecciona la vista actual
                     $data['active'] = "provincias";

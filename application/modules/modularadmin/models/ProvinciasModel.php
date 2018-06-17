@@ -16,6 +16,14 @@ class Provinciasmodel extends CI_Model
         $this->load->database();
     }
 
+    public function getAllProvincesCodes(){
+        return $this->db->get('provinces_code')->result();
+    }
+
+    public function getProvinceCode($id_province){
+        return $this->db->get_where('provinces_code', array('id'=>$id_province))->result();
+    }
+
     public function getAllProvinces(){
         return $this->db->get('provinces')->result();
     }

@@ -13,11 +13,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if (!empty($provincia)) :?>
                             <form role="form" id="formProvincia" autocomplete="off">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-5">
                                         <label for="inputNombre">Nombre</label>
-                                        <input type="text" class="form-control underlined" name="inputNombre" value="<?php echo $provincia->name ?>" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                        <input type="text" class="form-control underlined" name="inputNombre" value="<?php echo $provincia->name ?>" readonly>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-2">
+                                        <label for="inputMapCode">ID Provincia</label>
+                                        <input type="text" class="form-control underlined" name="inputMapCode" value="<?php echo $provincia->id ?>" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         <label for="inputMapCode">Código mapa</label>
                                         <input type="text" class="form-control underlined" name="inputMapCode" value="<?php echo $provincia->map_code ?>" readonly>
                                     </div>
@@ -51,13 +55,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php else:?>
                             <form role="form" id="formProvincia" autocomplete="off">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputNombre">Nombre</label>
-                                        <input type="text" class="form-control underlined" name="inputNombre" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputMapCode">Código mapa</label>
-                                        <input type="text" class="form-control underlined" name="inputMapCode" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                    <div class="form-group col-md-12">
+                                        <label for="inputProvincia">Provincia</label>
+                                        <select class="form-control" name='inputProvincia' id="inputProvincia" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                            <option selected></option>
+                                            <?php foreach ($codes as $map_code) {
+                                                echo "<option value='$map_code->id'>$map_code->id - $map_code->name - $map_code->value</option>";
+                                            } ?>
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-8" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
                                         <label for="inputDescription">Descripción provincia</label>

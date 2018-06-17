@@ -12,10 +12,7 @@ $(document).ready(function() {
 
     $("#formProvincia").validate({
         rules: {
-            inputNombre: {
-                required: true
-            },
-            inputMapCode: {
+            inputProvincia: {
                 required: true
             },
             inputDescription: {
@@ -39,11 +36,8 @@ $(document).ready(function() {
             }
         },
         messages: {
-            inputNombre: {
-                required: '<em class="text-danger">Escribe el nombre de la provincia</em>'
-            },
-            inputMapCode: {
-                required: '<em class="text-danger">Escribe el código de la provincia</em>'
+            inputProvincia: {
+                required: '<em class="text-danger">Elige una provincia de la lista</em>'
             },
             inputDescription:{
                 required: '<em class="text-danger">Escribe una descripción para la provincia</em>'
