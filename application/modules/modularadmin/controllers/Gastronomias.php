@@ -351,7 +351,7 @@ class Gastronomias extends MX_Controller {
 
     //******************************************************************
     //	UPLOAD IMAGE
-    //	$route['campaigns/upload_file'] = 'campaigns/uploadImage';
+    //	$route['pto-admin/gastronomias/upload_file'] = 'modularadmin/gastronomias/uploadImage';
     //******************************************************************
 
     public function uploadImage(){

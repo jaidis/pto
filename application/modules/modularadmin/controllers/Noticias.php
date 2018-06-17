@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Monumentos extends MX_Controller {
+class Noticias extends MX_Controller {
 
 
     /*******************************************************************
-     * Monumentos constructor
+     * Noticias constructor
      ******************************************************************/
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MonumentosModel','monumentos');
+        $this->load->model('NoticiasModel','noticias');
         $this->load->library("Aauth");
         $this->load->library("Utils");
         $this->load->library('upload');
@@ -18,9 +18,9 @@ class Monumentos extends MX_Controller {
     }
 
     /*******************************************************************
-     * PÁGINA DE INICIO PARA LOS MONUMENTS
-     * FORMULARIO PARA BORRAR UN MONUMENTO
-     * $route['pto-admin/monumentos'] = 'modularadmin/monumentos/index';
+     * PÁGINA DE INICIO PARA LAS NOTICIAS
+     * FORMULARIO PARA BORRAR UNA NOTICIAS
+     * $route['pto-admin/noticias'] = 'modularadmin/noticias/index';
      ******************************************************************/
 
     public function index()
@@ -29,17 +29,17 @@ class Monumentos extends MX_Controller {
 
             $response = array();
 
-            if (!empty($this->input->post('idMonument'))){
+            if (!empty($this->input->post('idNews'))){
 
-                $response['data'] = $this->monumentos->setDeleteMonument($this->input->post('idMonument'));
+                $response['data'] = $this->noticias->setDeleteNews($this->input->post('idNews'));
 
                 $response['response'] = 'success';
-                $response['message'] = "¡Se ha borrado el monumento!";
-                $response['province'] = $this->input->post('idMonument');
+                $response['message'] = "¡Se ha borrado la noticia!";
+                $response['news'] = $this->input->post('idNews');
 
-                $this->monumentos->setNewLog(array(
-                    "event_name"=>'Monumento Borrado',
-                    "event_description"=>"Se ha borrado el monumento con el ID '".$this->input->post('idMonument')."'",
+                $this->noticias->setNewLog(array(
+                    "event_name"=>'Noticia Borrada',
+                    "event_description"=>"Se ha borrado la noticia con el ID '".$this->input->post('idNews')."'",
                     "event_type"=>"info",
                     "event_ip"=> $this->utils->get_client_ip()
                 ));
@@ -48,7 +48,7 @@ class Monumentos extends MX_Controller {
             else{
 
                 $response['response'] = 'error';
-                $response['message'] = "¡ No se puede borrar el momumento !";
+                $response['message'] = "¡No se puede borrar la noticia!";
             }
 
 
@@ -66,22 +66,22 @@ class Monumentos extends MX_Controller {
 
                 if (!empty($data['ver']) && $data['ver'] == 1){
 
-                    $data['monumentos'] = $this->monumentos->getAllMonuments();
+                    $data['noticias'] = $this->noticias->getAllNews();
 
-                    foreach ($data['monumentos'] as $value)
+                    foreach ($data['noticias'] as $value)
                     {
-                        $temp_province = $this->monumentos->getProvinceId($value->id_province);
-                        $temp_user = $this->monumentos->getUserId($value->id_admin);
-                        $value->province_name = $temp_province[0]->name;
+                        $temp_news = $this->noticias->getProvinceId($value->id_province);
+                        $temp_user = $this->noticias->getUserId($value->id_admin);
+                        $value->province_name = (!empty($temp_news)) ? $temp_news[0]->name : 'No disponible';
                         $value->user_name = $temp_user[0]->username;
                     }
 
                     // Selecciona la vista actual
-                    $data['active'] = "monumentos";
+                    $data['active'] = "noticias";
                     $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
-                    $data['js_to_load'] = 'monumentos/index.js';
+                    $data['js_to_load'] = 'noticias/index.js';
                     $this->load->view('header',$data);
-                    $this->load->view('monumentos/index',$data);
+                    $this->load->view('noticias/index',$data);
                     $this->load->view('footer',$data);
 
                 }
@@ -105,74 +105,65 @@ class Monumentos extends MX_Controller {
 	}
 
     /*******************************************************************
-     * PÁGINA PARA UNA NUEVO MONUMENTO
-     * FORMULARIO PARA INSERTAR UN MONUMENTO
-     * $route['pto-admin/monumentos/new'] = 'modularadmin/monumentos/newMonument';
+     * PÁGINA PARA UNA NUEVA NOTICIA
+     * FORMULARIO PARA INSERTAR UNA NOTICIA
+     * $route['pto-admin/noticias/new'] = 'modularadmin/noticias/newNews';
      ******************************************************************/
 
-    public function newMonument()
+    public function newNews()
     {
         if ($this->input->post()){
 
             $response = array();
 
-            $monumentos = array();
+            $noticias = array();
 
-            if (!empty($this->input->post('inputNombre')))
-                $monumentos['name'] = $this->input->post('inputNombre');
-
-            if (!empty($this->input->post('inputYear')))
-                $monumentos['year'] = $this->input->post('inputYear');
+            if (!empty($this->input->post('inputTitle')))
+                $noticias['title'] = $this->input->post('inputTitle');
 
             if (!empty($this->input->post('inputProvincia')))
-                $monumentos['id_province'] = $this->input->post('inputProvincia');
+                $noticias['id_province'] = $this->input->post('inputProvincia');
 
-            if (!empty($this->input->post('inputCoordenadaX')))
-                $monumentos['coordenate_x'] = $this->input->post('inputCoordenadaX');
-
-            if (!empty($this->input->post('inputCoordenadaY')))
-                $monumentos['coordenate_y'] = $this->input->post('inputCoordenadaY');
-
-            if (!empty($this->input->post('inputWeb')))
-                $monumentos['web'] = $this->input->post('inputWeb');
+            if (!empty($this->input->post('inputSubtitle')))
+                $noticias['subtitle'] = $this->input->post('inputSubtitle');
 
             if (!empty($this->input->post('inputDescription')))
-                $monumentos['description'] = $this->input->post('inputDescription');
+                $noticias['description'] = $this->input->post('inputDescription');
 
             if (!empty($this->input->post('idUser')))
-                $monumentos['id_admin'] = $this->input->post('idUser');
+                $noticias['id_admin'] = $this->input->post('idUser');
 
             if (!empty($this->input->post('valueImage'))){
-                $monumentos['image_url'] = $this->input->post('valueImage');
+                $noticias['image_url'] = $this->input->post('valueImage');
 
                 //La imagen se mueve de la carpeta temporal a su directorio, despues se borran todas las imagenes temporales
-                @rename ("uploads/".$monumentos['image_url'],"assets/img/monuments/".$monumentos['image_url']);
+                @rename ("uploads/".$noticias['image_url'],"assets/img/news/".$noticias['image_url']);
                 @array_map('unlink', glob("uploads/*"));
             }
 
-            $monumentos['active'] = $this->input->post('active');
-            if ($monumentos['active'] == "on")
-                $monumentos['active'] = 1;
+            $noticias['active'] = $this->input->post('active');
+            if ($noticias['active'] == "on")
+                $noticias['active'] = 1;
             else
-                $monumentos['active'] = 0;
+                $noticias['active'] = 0;
 
-            $url = $this->utils->eliminar_tildes($monumentos['name']);
+            $url = $this->utils->eliminar_tildes($noticias['title']);
             $url = $this->utils->eliminar_caracteres($url);
             $url = str_replace(' ','-',$url);
-            $monumentos['url'] = strtolower($url);
+            $noticias['url'] = strtolower($url);
 
-            $result = $this->monumentos->setNewMonument($monumentos);
+            $result = $this->noticias->setNewNews($noticias);
 
-            $this->monumentos->setNewLog(array(
-                "event_name"=>'Monumento Añadido',
-                "event_description"=>"Se ha añadido el monumento con el ID '".$result."'",
+            $this->noticias->setNewLog(array(
+                "event_name"=>'Noticia Añadida',
+                "event_description"=>"Se ha añadido la noticia con el ID '".$result."'",
                 "event_type"=>"info",
                 "event_ip"=> $this->utils->get_client_ip()
             ));
 
             $response['response'] = 'success';
-            $response['data'] = $monumentos;
-            $response['message'] = "¡Se ha añadido el monumento!";
+            $response['data'] = $noticias;
+            $response['message'] = "¡Se ha añadido la noticia!";
 
 
             echo json_encode($response);
@@ -189,14 +180,14 @@ class Monumentos extends MX_Controller {
 
                 if (!empty($data['añadir']) && $data['añadir'] == 1){
 
-                    $data['provincias'] = $this->monumentos->getAllProvinces();
+                    $data['provincias'] = $this->noticias->getAllProvinces();
 
                     // Selecciona la vista actual
-                    $data['active'] = "monumentos";
+                    $data['active'] = "noticias";
                     $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
-                    $data['js_to_load'] = 'monumentos/monumentNew.js';
+                    $data['js_to_load'] = 'noticias/newsNew.js';
                     $this->load->view('header',$data);
-                    $this->load->view('monumentos/monumentsView',$data);
+                    $this->load->view('noticias/newsView',$data);
                     $this->load->view('footer',$data);
 
                 }
@@ -220,14 +211,14 @@ class Monumentos extends MX_Controller {
     }
 
     /*******************************************************************
-     * PÁGINA PARA EDITAR UN MONUMENTO
-     * FORMULARIO PARA EDITAR UN MONUMENTO
-     * $route['pto-admin/monumentos/edit'] = 'modularadmin/monumentos/editMonument';
-     * $route['pto-admin/monumentos/edit/(:num)'] = 'modularadmin/monumentos/editMonument/$1';
-     * @param int $id_monument Id deL monumento
+     * PÁGINA PARA EDITAR UNA NOTICIA
+     * FORMULARIO PARA EDITAR UNA NOTICIA
+     * $route['pto-admin/noticias/edit'] = 'modularadmin/noticias/editNews';
+     * $route['pto-admin/noticias/edit/(:num)'] = 'modularadmin/noticias/editNews/$1';
+     * @param int $id_news Id de la noticia
      ******************************************************************/
 
-    public function editMonument($id_monument = null)
+    public function editNews($id_news = null)
     {
         if ($this->input->post()){
 
@@ -235,69 +226,59 @@ class Monumentos extends MX_Controller {
 
             try{
 
-                $monumentos = array();
+                $noticias = array();
 
-                if (!empty($this->input->post('inputNombre')))
-                    $monumentos['name'] = $this->input->post('inputNombre');
+                if (!empty($this->input->post('inputTitle')))
+                    $noticias['title'] = $this->input->post('inputTitle');
 
-                if (!empty($this->input->post('inputYear')))
-                    $monumentos['year'] = $this->input->post('inputYear');
+                $noticias['id_province'] = intval($this->input->post('inputProvincia'));
 
-                if (!empty($this->input->post('inputProvincia')))
-                    $monumentos['id_province'] = $this->input->post('inputProvincia');
-
-                if (!empty($this->input->post('inputCoordenadaX')))
-                    $monumentos['coordenate_x'] = $this->input->post('inputCoordenadaX');
-
-                if (!empty($this->input->post('inputCoordenadaY')))
-                    $monumentos['coordenate_y'] = $this->input->post('inputCoordenadaY');
-
-                if (!empty($this->input->post('inputWeb')))
-                    $monumentos['web'] = $this->input->post('inputWeb');
+                if (!empty($this->input->post('inputSubtitle')))
+                    $noticias['subtitle'] = $this->input->post('inputSubtitle');
 
                 if (!empty($this->input->post('inputDescription')))
-                    $monumentos['description'] = $this->input->post('inputDescription');
+                    $noticias['description'] = $this->input->post('inputDescription');
 
                 if (!empty($this->input->post('idUser')))
-                    $monumentos['id_admin'] = $this->input->post('idUser');
+                    $noticias['id_admin'] = $this->input->post('idUser');
 
                 if (!empty($this->input->post('valueImage'))){
-                    $monumentos['image_url'] = $this->input->post('valueImage');
+                    $noticias['image_url'] = $this->input->post('valueImage');
 
                     //La imagen se mueve de la carpeta temporal a su directorio, despues se borran todas las imagenes temporales
-                    @rename ("uploads/".$monumentos['image_url'],"assets/img/monuments/".$monumentos['image_url']);
+                    @rename ("uploads/".$noticias['image_url'],"assets/img/news/".$noticias['image_url']);
                     @array_map('unlink', glob("uploads/*"));
                 }
 
-                $monumentos['active'] = $this->input->post('active');
-                if ($monumentos['active'] == "on")
-                    $monumentos['active'] = 1;
+                $noticias['active'] = $this->input->post('active');
+                if ($noticias['active'] == "on")
+                    $noticias['active'] = 1;
                 else
-                    $monumentos['active'] = 0;
+                    $noticias['active'] = 0;
 
-                $url = $this->utils->eliminar_tildes($monumentos['name']);
+                $url = $this->utils->eliminar_tildes($noticias['title']);
                 $url = $this->utils->eliminar_caracteres($url);
                 $url = str_replace(' ','-',$url);
-                $monumentos['url'] = strtolower($url);
+                $noticias['url'] = strtolower($url);
 
-                $id_monument = $this->input->post('inputIdMonumento');
+                $id_news = $this->input->post('inputIdNoticia');
 
-                $this->monumentos->setUpdateMonument($id_monument, $monumentos);
+                $this->noticias->setUpdateNews($id_news, $noticias);
 
-                $this->monumentos->setNewLog(array(
-                    "event_name"=>'Monumento Editado',
-                    "event_description"=>"Se ha editado el monumento con el ID '".$id_monument."'",
+                $this->noticias->setNewLog(array(
+                    "event_name"=>'Noticia Editada',
+                    "event_description"=>"Se ha editado la noticia con el ID '".$id_news."'",
                     "event_type"=>"info",
                     "event_ip"=> $this->utils->get_client_ip()
                 ));
 
                 $response['response'] = 'success';
-                $response['data'] = $monumentos;
-                $response['message'] = "¡Se ha editado el monumento!";
+                $response['data'] = $noticias;
+                $response['message'] = "¡Se ha editado la noticia!";
 
             }catch (\Exception $e) {
 
-                $this->monumentos->setNewLog(array(
+                $this->noticias->setNewLog(array(
                     "event_name"=>$e->getMessage(),
                     "event_description"=>" Line: ".$e->getLine()." File: ".$e->getFile(),
                     "event_type"=>"error",
@@ -322,22 +303,22 @@ class Monumentos extends MX_Controller {
 
                 if (!empty($data['ver']) && $data['ver'] == 1){
 
-                    $data['monumento'] = $this->monumentos->getMonumentId($id_monument);
+                    $data['noticia'] = $this->noticias->getNewsId($id_news);
 
-                    if (count($data['monumento'])>0){
+                    if (count($data['noticia'])>0){
 
-                        $data['configuracion'] = json_encode(array_values($data['monumento']), JSON_PRETTY_PRINT);
+                        $data['configuracion'] = json_encode(array_values($data['noticia']), JSON_PRETTY_PRINT);
 
-                        $data['monumento'] = $data['monumento'][0];
+                        $data['noticia'] = $data['noticia'][0];
 
-                        $data['provincias'] = $this->monumentos->getAllProvinces();
+                        $data['provincias'] = $this->noticias->getAllProvinces();
 
                         // Selecciona la vista actual
-                        $data['active'] = "monumentos";
+                        $data['active'] = "noticias";
                         $data['user'] = $this->aauth->get_user($this->aauth->get_user_id($email=false));
-                        $data['js_to_load'] = 'monumentos/monumentEdit.js';
+                        $data['js_to_load'] = 'noticias/newsEdit.js';
                         $this->load->view('header',$data);
-                        $this->load->view('monumentos/monumentsView',$data);
+                        $this->load->view('noticias/newsView',$data);
                         $this->load->view('footer',$data);
 
                     }
@@ -345,7 +326,7 @@ class Monumentos extends MX_Controller {
                         $protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
                         $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
                         $complete_url =   $base_url . $_SERVER["REQUEST_URI"];
-                        redirect($base_url.'/pto-admin/monumentos');
+                        redirect($base_url.'/pto-admin/noticias');
                     }
 
                 }
@@ -370,7 +351,7 @@ class Monumentos extends MX_Controller {
 
     //******************************************************************
     //	UPLOAD IMAGE
-    //	$route['pto-admin/monumentos/upload_file'] = 'modularadmin/monumentos/uploadImage';
+    //	$route['pto-admin/noticias/upload_file'] = 'modularadmin/noticias/uploadImage';
     //******************************************************************
 
     public function uploadImage(){

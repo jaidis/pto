@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-if (!empty($gastronomia))
+if (!empty($noticia))
     echo "<script>var configuracion = $configuracion;</script>";
 ?>
 <article class="content forms-page">
     <div class="title-block">
-        <h1 class="title"> <?php echo (!empty($gastronomia))? 'Editar gastronomía' : 'Nueva gastronomía' ?> </h1>
+        <h1 class="title"> <?php echo (!empty($noticia))? 'Editar noticia' : 'Nueva noticia' ?> </h1>
     </div>
     <section class="section">
         <div class="row sameheight-container">
             <div class="col-12">
                 <div class="card" data-exclude="xs">
                     <div class="card-block">
-                        <?php if (!empty($gastronomia)) :?>
-                            <form role="form" id="formGastronomia" autocomplete="off">
+                        <?php if (!empty($noticia)) :?>
+                            <form role="form" id="formNoticia" autocomplete="off">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputNombre">Nombre</label>
-                                        <input type="text" class="form-control underlined" name="inputNombre" value="<?php echo $gastronomia->name ?>" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                        <label for="inputTitle">Título de la noticia</label>
+                                        <input type="text" class="form-control underlined" name="inputTitle" maxlength="255" value="<?php echo $noticia->title ?>" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputProvincia">Provincia</label>
@@ -29,48 +29,48 @@ if (!empty($gastronomia))
                                             } ?>
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-12" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 400 caracteres">
+                                        <label for="inputSubtitle">Subtítulo de la noticia</label>
+                                        <input type="text" class="form-control underlined" name="inputSubtitle" maxlength="400" value="<?php echo $noticia->subtitle ?>" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                    </div>
                                     <div class="form-group col-md-8">
                                         <label for="inputUrl">Url</label>
-                                        <input type="text" class="form-control underlined" name="inputUrl" value="<?php echo $gastronomia->url ?>" readonly>
+                                        <input type="text" class="form-control underlined" name="inputUrl" value="<?php echo $noticia->url ?>" readonly>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputDate">Fecha registro</label>
-                                        <input type="text" class="form-control underlined" name="inputDate" value="<?php echo $gastronomia->date_creation ?>" readonly>
+                                        <input type="text" class="form-control underlined" name="inputDate" value="<?php echo $noticia->date_creation ?>" readonly>
                                     </div>
-                                    <div class="form-group col-md-3" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 1.000 caracteres. Para separar por líneas añadir ';' al final de cada ingrediente">
-                                        <label for="inputIngredientes">Ingredientes gastronomía</label>
-                                        <textarea rows="11" class="form-control underlined" name="inputIngredientes" maxlength="1000" placeholder="Patatas;Huevos;Tomates" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>><?php echo $gastronomia->ingredients ?></textarea>
-                                    </div>
-                                    <div class="form-group col-md-5" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
-                                        <label for="inputElaboracion">Elaboración gastronomía</label>
-                                        <textarea rows="11" class="form-control underlined" name="inputElaboracion" maxlength="5000" placeholder="Escribe aquí la elaboración de la gastronomía" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>><?php echo $gastronomia->elaboration ?></textarea>
+                                    <div class="form-group col-md-8" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
+                                        <label for="inputDescription">Descripción de la noticia</label>
+                                        <textarea rows="11" class="form-control underlined" name="inputDescription" maxlength="5000" placeholder="Escribe aquí la descripción de la noticia" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>><?php echo $noticia->description ?></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="imgPreview">Imagen gastronomía</label>
-                                        <img src="/assets/img/gastronomies/<?php echo (!empty($gastronomia->image_url)) ? $gastronomia->image_url : 'not-found-1920-1080.jpg' ?>" alt="" class="img-fluid" id="imgPreview">
+                                        <label for="imgPreview">Imagen noticia</label>
+                                        <img src="/assets/img/news/<?php echo (!empty($noticia->image_url)) ? $noticia->image_url : 'not-found-1920-1080.jpg' ?>" alt="" class="img-fluid" id="imgPreview">
                                     </div>
                                 </div>
                                 <div class="form-check p-0 my-2">
                                     <label class="form-check-label" for="active">
-                                        <input class="checkbox rounded" type="checkbox" id="active" name="active" <?php echo ($gastronomia->active == 1) ? 'checked="checked"' : ''  ?>>
-                                        <span>Activar gastronomía</span>
+                                        <input class="checkbox rounded" type="checkbox" id="active" name="active" <?php echo ($noticia->active == 1) ? 'checked="checked"' : ''  ?>>
+                                        <span>Activar noticia</span>
                                     </label>
                                 </div>
                                 <div class="form-group mt-4 mb-0">
                                     <?php if(!empty($añadir) && $añadir == 1): ?>
                                         <input type="hidden" class="form-control underlined" name="valueImage" id="valueImage" value="">
                                         <input type="hidden" class="form-control underlined" name="idUser" id="idUser" value="<?php echo $user->id ?>">
-                                        <input type="hidden" class="form-control underlined" name="inputIdGastronomia" id="inputIdGastronomia" value="<?php echo $gastronomia->id ?>">
-                                        <button type="submit" class="btn btn-primary rounded" id="gastronomiaButton"><i class="fa fa-save mr-2"></i>Guardar</button>
+                                        <input type="hidden" class="form-control underlined" name="inputIdNoticia" id="inputIdNoticia" value="<?php echo $noticia->id ?>">
+                                        <button type="submit" class="btn btn-primary rounded" id="noticiaButton"><i class="fa fa-save mr-2"></i>Guardar</button>
                                     <?php endif; ?>
                                 </div>
                             </form>
                         <?php else:?>
-                            <form role="form" id="formGastronomia" autocomplete="off">
+                            <form role="form" id="formNoticia" autocomplete="off">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputNombre">Nombre</label>
-                                        <input type="text" class="form-control underlined" name="inputNombre" placeholder="Nombre de la gastronomía" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
+                                        <label for="inputTitle">Título de la noticia</label>
+                                        <input type="text" class="form-control underlined" name="inputTitle" maxlength="255" placeholder="Titular de la noticia" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputProvincia">Provincia</label>
@@ -82,30 +82,30 @@ if (!empty($gastronomia))
                                             } ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 1.000 caracteres. Para separar por líneas añadir ';' al final de cada ingrediente">
-                                        <label for="inputIngredientes">Ingredientes gastronomía</label>
-                                        <textarea rows="11" class="form-control underlined" name="inputIngredientes" maxlength="1000" placeholder="Patatas;Huevos;Tomates" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>></textarea>
+                                    <div class="form-group col-md-12" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 400 caracteres">
+                                        <label for="inputSubtitle">Subtítulo de la noticia</label>
+                                        <input type="text" class="form-control underlined" name="inputSubtitle" maxlength="400" placeholder="Subtítular de la noticia" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>>
                                     </div>
-                                    <div class="form-group col-md-5" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
-                                        <label for="inputElaboracion">Elaboración gastronomía</label>
-                                        <textarea rows="11" class="form-control underlined" name="inputElaboracion" maxlength="5000" placeholder="Escribe aquí la elaboración de la gastronomía" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>></textarea>
+                                    <div class="form-group col-md-8" data-toggle="tooltip" data-placement="top" data-html="true" title="Máximo 5.000 caracteres. Para separar por párrafos añadir ';' al final de la línea">
+                                        <label for="inputDescription">Descripción de la noticia</label>
+                                        <textarea rows="11" class="form-control underlined" name="inputDescription" maxlength="5000" placeholder="Escribe aquí la descripción de la noticia" <?php if(!empty($ver) && $ver == 1 && empty($añadir) && empty($editar) && empty($borrar)) echo 'readonly' ?>></textarea>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="imgPreview">Imagen gastronomía</label>
-                                        <img src="/assets/img/gastronomies/not-found-1920-1080.jpg" alt="" class="img-fluid" id="imgPreview">
+                                        <label for="imgPreview">Imagen noticia</label>
+                                        <img src="/assets/img/news/not-found-1920-1080.jpg" alt="" class="img-fluid" id="imgPreview">
                                     </div>
                                 </div>
                                 <div class="form-check p-0 my-2">
                                     <label class="form-check-label" for="active">
                                         <input class="checkbox rounded" type="checkbox" id="active" name="active">
-                                        <span>Activar gastronomía</span>
+                                        <span>Activar noticia</span>
                                     </label>
                                 </div>
                                 <div class="form-group mt-4 mb-0">
                                     <?php if(!empty($añadir) && $añadir == 1): ?>
                                         <input type="hidden" class="form-control underlined" name="valueImage" id="valueImage" value="">
                                         <input type="hidden" class="form-control underlined" name="idUser" id="idUser" value="<?php echo $user->id ?>">
-                                        <button type="submit" class="btn btn-primary rounded" id="gastronomiaButton"><i class="fa fa-save mr-2"></i>Guardar</button>
+                                        <button type="submit" class="btn btn-primary rounded" id="noticiaButton"><i class="fa fa-save mr-2"></i>Guardar</button>
                                     <?php endif; ?>
                                 </div>
                             </form>

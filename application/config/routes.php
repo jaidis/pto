@@ -158,6 +158,17 @@ $route['pto-admin/gastronomias/edit/(:any)'] = 'modularadmin/gastronomias/index'
 $route['pto-admin/gastronomias/upload_file'] = 'modularadmin/gastronomias/uploadImage';
 
 // ******************************************************************
+// RUTAS PARA ADMINISTRACION - NOTICIAS
+// ******************************************************************
+$route['pto-admin/noticias'] = 'modularadmin/noticias/index';
+$route['pto-admin/noticias/new'] = 'modularadmin/noticias/newNews';
+$route['pto-admin/noticias/edit'] = 'modularadmin/noticias/editNews';
+$route['pto-admin/noticias/edit/(:num)'] = 'modularadmin/noticias/editNews/$1';
+$route['pto-admin/noticias/edit/(:any)'] = 'modularadmin/noticias/index';
+
+$route['pto-admin/noticias/upload_file'] = 'modularadmin/noticias/uploadImage';
+
+// ******************************************************************
 // RUTAS PARA ADMINISTRACION - CONFIGURACIÓN
 // ******************************************************************
 $route['pto-admin/permisos'] = 'modularadmin/home/permisos';
