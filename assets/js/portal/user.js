@@ -21,6 +21,14 @@ $(document).ready(function() {
             },
             inputLastName: {
                 required: true
+            },
+            inputNewPassword:{
+                minlength: 5,
+                maxlength: 13
+            },
+            inputNewPasswordShadow:{
+                minlength: 5,
+                maxlength: 13
             }
         },
         highlight: function(element) {
@@ -45,6 +53,9 @@ $(document).ready(function() {
             },
             inputLastName: {
                 required: '<em class="text-danger">Escribe los apellidos</em>'
+            },
+            inputNewPasswordShadow:{
+                equalTo: '<em class="text-danger">Las contraseñas no coinciden</em>'
             }
         },
         submitHandler: function(form) {

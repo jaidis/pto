@@ -196,6 +196,22 @@ class Portal extends CI_Controller
                             @array_map('unlink', glob("uploads/*"));
                         }
 
+                        if(!empty($this->input->post('inputCurrentPassword')) && !empty($this->input->post('inputNewPassword')) && !empty($this->input->post('inputNewPasswordShadow'))){
+
+                            if(password_verify($this->input->post('inputCurrentPassword'), $user->pass)){
+
+                                $usuario['pass'] = password_hash($this->input->post('inputNewPassword'), PASSWORD_DEFAULT);
+                            }
+                            else{
+
+                                $response['response'] = 'error';
+                                $response['message'] = "¡ La contraseña actual no es válida !";
+                                echo json_encode($response);
+                                exit;
+                            }
+
+                        }
+
                         $this->portal->setUpdateUser($user->id, $usuario);
 
                         $this->portal->setNewLog(array(

@@ -12,6 +12,9 @@
             <h1 class="center-titles special-title">Datos de usuario</h1>
             <h4 class="mt-5">Aquí puedes consultar tus datos de usuario y modificarlos en caso de necesidad, además te invitamos a cambiar tu foto de perfil para que puedan conocerte mejor el resto de usuarios.</h4>
         </div>
+        <?php if(!empty($ver) && $ver == 1): ?>
+                <a href="/pto-admin" class="mx-auto d-block mb-5" style="text-decoration: none;"><button class=" btn btn-primary btn-lg rounded"><i class="fa fa-sign-in mr-2"></i>Ir al panel de administración</button></a>
+        <?php endif; ?>
         <div class="col-12 offset-xl-2 col-xl-8 mb-5">
             <div class="jumbotron jumbotron-contact">
                 <img id="imgPreview" class="profile-img-card mx-auto mb-4" src="/assets/img/users/<?php echo (!empty($user->image_url)) ? $user->image_url : 'user.png' ?>">
@@ -47,6 +50,26 @@
                         <div class="form-group">
                             <label class="form-control-label" for="inputLastLogin">Último acceso</label>
                             <input type="text" class="form-control"  value="<?php echo $user->last_login ?>" name="inputLastLogin" id="inputLastLogin" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 multi-horizontal">
+                        <div class="form-group">
+                            <label class="form-control-label" for="inputCurrentPassword">Contraseña actual</label>
+                            <input type="password" class="form-control" placeholder="Contraseña actual"  name="inputCurrentPassword">
+                        </div>
+                    </div>
+                    <div class="col-md-4 multi-horizontal">
+                        <div class="form-group">
+                            <label class="form-control-label" for="inputNewPassword">Nueva contraseña</label>
+                            <input type="password" class="form-control" placeholder="Introduce la contraseña nueva"  name="inputNewPassword" id="inputNewPassword">
+                        </div>
+                    </div>
+                    <div class="col-md-4 multi-horizontal">
+                        <div class="form-group">
+                            <label class="form-control-label" for="inputNewPasswordShadow">Nueva contraseña</label>
+                            <input type="password" class="form-control" placeholder="Repite la contraseña nueva"  name="inputNewPasswordShadow" equalTo="#inputNewPassword">
                         </div>
                     </div>
                 </div>
