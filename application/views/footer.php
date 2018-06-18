@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <div class="col-12 col-md-4 footer-col footer-right">
-            <p class="p-0 m-0"><a href="/cuenta" class="text-white">Cuenta<i class="fa fa-user fa-fw ml-1 icon-left"></i></a></p>
+            <p class="p-0 m-0"><a href="/usuario" class="text-white">Cuenta<i class="fa fa-user fa-fw ml-1 icon-left"></i></a></p>
             <p class="p-0 m-0"><a href="/login" class="text-white">Login<i class="fa fa-key fa-fw ml-1 icon-left"></i></a></p>
             <p class="p-0 m-0"><a href="/registro" class="text-white">Regitro<i class="fa fa-user-plus fa-fw ml-1 icon-left"></i></a></p>
             <p class="p-0 m-0"><a href="/recuperar" class="text-white">Recuperar cuenta<i class="fa fa-refresh fa-fw ml-1 icon-left"></i></a></p>

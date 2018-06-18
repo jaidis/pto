@@ -120,6 +120,13 @@ $route['noticia/(:any)/(:any)'] = 'news/news';
 $route['contacto'] = 'portal/contact';
 
 // ******************************************************************
+// RUTAS PARA USUARIO
+// ******************************************************************
+$route['usuario'] = 'portal/user';
+
+$route['usuario/upload_file'] = 'portal/uploadImage';
+
+// ******************************************************************
 // RUTAS PARA ADMINISTRACION - INDEX
 // ******************************************************************
 $route['pto-admin'] = 'modularadmin/home/index';

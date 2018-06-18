@@ -52,4 +52,14 @@ class PortalModel extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function setUpdateUser($id, $array)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('aauth_users', $array);
+    }
+
+    public function setNewLog($array){
+        return $this->db->insert('logs',$array);
+    }
+
 }

@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="profile dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <?php if (!empty($user)): ?>
-                            <img class="img" src="/assets/img/users/<?php echo $user->image_url; ?>">
+                            <img class="img" src="/assets/img/users/<?php echo (!empty($user->image_url)) ? $user->image_url : 'user.png' ?>">
                             <span class="name"> <?php echo $user->username; ?> </span>
                             <?php endif; ?>
                         </a>

@@ -8,11 +8,11 @@
 ?>
 <div class="container-fluid p-0">
     <div class="row bg-main m-0 p-0">
-        <div class="col-12 p-0 offset-md-1 col-md-10 offset-xl-2 col-xl-8 my-5">
+        <div class="col-12 offset-md-1 col-md-10 offset-xl-2 col-xl-8 my-5">
             <h1 class="center-titles special-title">Contacto</h1>
             <h4 class="mt-5">Si tienes alguna duda o sugerencia y necesitas ponerte en contacto con nosotros puedes rellenar el siguiente formulario, contactaremos contigo en un breve periodo de tiempo.</h4>
         </div>
-        <div class="col-12 offset-xl-2 col-xl-8 px-0 mb-5">
+        <div class="col-12 offset-xl-2 col-xl-8 mb-5">
             <div class="jumbotron jumbotron-contact">
             <form role="form" id="formContact" autocomplete="off">
                 <div class="row">
