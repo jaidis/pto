@@ -1,3 +1,5 @@
+![Portal Turismo y Ocio](/assets/img/logo.png)
+
 # Portal Turismo y Ocio
 
 Este es el repositorio que contiene el proyecto final de **Diseño de Aplicaciones Web**
